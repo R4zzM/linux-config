@@ -10,8 +10,8 @@ Configuration of American kb layout for console.<br>
 Configuration of Swedish kb layout for console.<br>
 <br> 
 <b>/etc/vconsole.conf</b><br>
-Configuration of keymap and font for (non X) consoles.
+Configuration of keymap and font for (non X) consoles.<br>
 <br>
 <b>~/.bashrc</b><br>
-Environment for the login shell.
+Environment for the login shell.<br>
 <br>
