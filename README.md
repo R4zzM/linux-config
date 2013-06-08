@@ -12,4 +12,6 @@ Configuration of Swedish kb layout for console.<br>
 <b>/etc/vconsole.conf</b><br>
 Configuration of keymap and font for (non X) consoles.
 <br>
-
+<b>~/.bashrc</b><br>
+Environment for the login shell.
+<br>
