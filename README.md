@@ -9,3 +9,7 @@ Configuration of American kb layout for console.<br>
 <b>rasmus-sv-latin1.map</b><br>
 Configuration of Swedish kb layout for console.<br>
 <br> 
+<b>/etc/vconsole.conf</b><br>
+Configuration of keymap and font for (non X) consoles.
+<br>
+
