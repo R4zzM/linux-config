@@ -8,8 +8,6 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-PATH=$PATH:~/bin
-export PATH
-
-EDITOR=vim
-export EDITOR
+export PATH=$PATH:~/bin
+export EDITOR=vim
+export TERM=linux
