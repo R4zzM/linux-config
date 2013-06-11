@@ -16,8 +16,8 @@ Configuration of keymap and font for (non X) consoles.<br>
 Environment for the login shell.<br>
 <br>
 <b>~/.vimrc</b><br>
-Configuration file for vim
+Configuration file for vim.<br>
 <br>
 <b>/etc/motd</b><br>
-Message of the day the is displayed when logging in through ssh
+Message of the day the is displayed when logging in through ssh.<br>
 <br>
