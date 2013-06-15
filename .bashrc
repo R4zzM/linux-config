@@ -11,3 +11,5 @@ PS1='[\u@\h \W]\$ '
 export PATH=$PATH:~/bin
 export EDITOR=vim
 export TERM=linux
+
+xmodmap .xmodmap
