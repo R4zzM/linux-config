@@ -1,0 +1,7 @@
+! 
+! Configuration for unicode-rxvt terminal emulator
+!
+URxvt.scrollBar: false
+
+! All fonts are available in /usr/share/fonts/misc/fonts.alias
+URxvt.font: 9x15
