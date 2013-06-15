@@ -1,3 +1,6 @@
+" #################
+" Vim configuration
+" #################
 syntax on
 
 set number
@@ -15,3 +18,26 @@ set whichwrap+=<,>,h,l
 
 " Backspace is backspace
 set backspace=2 
+
+" Change common programming chars
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap " ""<Esc>i
+inoremap ' ''<Esc>i
+
+" { requires some special treatment using autoindent
+inoremap { {<CR><CR><BS>}<Esc>ki<Tab>
+
+" ####################
+" Plugin Configuration
+" ####################
+execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
+
+" NERD Tree
+map <C-n> :NERDTreeToggle<CR>
+
+" Syntastic
+let g:syntastic_auto_loc_list=1
+let g:syntastic_disabled_filetypes=['html']
+let g:syntastic_enable_signs=1
+
