@@ -1,0 +1,6 @@
+#! /bin/bash
+
+# A temporary script to set swedish keyboard layout
+setxkbmap us
+xmodmap ~/.xmodmap
+
