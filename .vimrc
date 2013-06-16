@@ -26,11 +26,14 @@ inoremap [ []<Esc>i
 inoremap " ""<Esc>i
 inoremap ' ''<Esc>i
 
-" Escape an autoclosed quote...
-inoremap <C-f> <Esc>/)\\|]\\|}\\|"\\|'<CR>a
-
 " { requires some special treatment using autoindent
 inoremap { {<CR><CR><BS>}<Esc>ki<Tab>
+
+" The forward breakout
+inoremap <C-f> <Esc>/)\\|]\\|}\\|"\\|'<CR>a
+
+" Forward block cycle
+noremap <C-f>  /(\\|[\\|{\\|"\\|'<ESC>a<ESC>
 
 " ####################
 " Plugin Configuration
