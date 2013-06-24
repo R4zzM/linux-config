@@ -13,6 +13,9 @@ set number
 " Start searching as soon as text is typed after an '/'
 set incsearch
 
+" Highlight all search matches
+set hlsearch
+
 " Automatically indent files that should be indented
 set autoindent
 set smartindent
@@ -30,7 +33,7 @@ set whichwrap+=<,>,h,l
 set backspace=2 
 
 " Ignore interpretation of remapped keys when pasting into buffer
-set paste
+set mouse=a
 
 " ############# 
 " Key remapping
