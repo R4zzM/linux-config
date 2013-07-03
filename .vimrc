@@ -39,7 +39,8 @@ set mouse=a
 " Key remapping
 " #############
 
-" This section is about remapping keys. 
+" <F12> does a :wq!
+nmap <F12> :wq!<CR>
 
 " Add autoclose for brackets and quotes
 inoremap ( ()<Esc>i
