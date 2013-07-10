@@ -7,6 +7,9 @@
 " Use highlightnig of text for different type of files (mostly code).
 syntax on
 
+" Read custom filetype konfiguration from ~/.vim/ftplugin/
+filetype plugin on
+
 " Show line numbers
 set number
 
@@ -35,6 +38,9 @@ set backspace=2
 " Ignore interpretation of remapped keys when pasting into buffer
 set mouse=a
 
+" Share clipboard with X
+set clipboard=unnamedplus
+
 " ############# 
 " Key remapping
 " #############
@@ -42,22 +48,11 @@ set mouse=a
 " <F12> does a :wq!
 nmap <F12> :wq!<CR>
 
-" Add autoclose for brackets and quotes
-inoremap ( ()<Esc>i
-inoremap () ()<Esc>i  
-inoremap [ []<Esc>i
-inoremap [] []<Esc>i
-inoremap " ""<Esc>i
-inoremap ' ''<Esc>i
-
-" { requires some special treatment using autoindent
-inoremap { {<CR><CR><BS>}<Esc>ki<Tab>
-
 " The forward breakout
-inoremap <C-f> <Esc>/)\\|]\\|}\\|"\\|'<CR>a
+"inoremap <C-f> <Esc>/)\\|]\\|}\\|"\\|'<CR>a
 
 " Forward block cycle
-noremap <silent> <C-f>  /(\\|[\\|{\\|"\\|'<ESC>a<ESC>
+"noremap <silent> <C-f>  /(\\|[\\|{\\|"\\|'<ESC>a<ESC>
 
 " ####################
 " Plugin Configuration

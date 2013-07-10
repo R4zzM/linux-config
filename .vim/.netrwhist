@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/erasmat/repos/ericsson/nmx-ide-toolchain/.git'
+let g:netrw_dirhist_2='/home/erasmat/Downloads/jacorb-3.2/demo/bidir/build'
+let g:netrw_dirhist_3='/home/erasmat/Downloads/jacorb-3.1/demo/bidir/build'
+let g:netrw_dirhist_4='/etc/X11'
