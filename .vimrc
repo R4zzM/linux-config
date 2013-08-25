@@ -41,6 +41,9 @@ set mouse=a
 " Share clipboard with X
 set clipboard=unnamedplus
 
+" Show command in status line
+set showcmd
+  
 " ############# 
 " Key remapping
 " #############
@@ -53,6 +56,16 @@ nmap <F12> :wq!<CR>
 
 " Forward block cycle
 "noremap <silent> <C-f>  /(\\|[\\|{\\|"\\|'<ESC>a<ESC>
+
+" ###############
+" Leader commands
+" ###############
+
+" Requires Align plugin
+map <Leader>a :Align=<CR>
+
+" Requires Surround plugin
+map <Leader>s ysiw
 
 " ####################
 " Plugin Configuration
@@ -69,5 +82,5 @@ map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic
 let g:syntastic_auto_loc_list=1
-let g:syntastic_disabled_filetypes=['html']
+" let g:syntastic_disabled_filetypes=['html']
 let g:syntastic_enable_signs=1
