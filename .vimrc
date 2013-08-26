@@ -43,12 +43,14 @@ set clipboard=unnamedplus
 
 " Show command in status line
 set showcmd
-  
+
+" Ignore in filesearch and completion
+set wildignore+=*.swp,*.class
+
 " ############# 
 " Key remapping
 " #############
 
-" <F12> does a :wq!
 nmap <F12> :wq!<CR>
 
 " The forward breakout
@@ -61,11 +63,26 @@ nmap <F12> :wq!<CR>
 " Leader commands
 " ###############
 
-" Requires Align plugin
-map <Leader>a :Align=<CR>
+" Kill current buffer
+map <Leader>k :bd<CR> 
 
-" Requires Surround plugin
+" Align text with Align plugin
+map <Leader>a :Align=<CR>
+map <Leader>at :Align\|<CR>
+
+" Add surroundings with Surround plugin
 map <Leader>s ysiw
+
+" Init search with CtrlP plugin
+map <Leader>p :CtrlPMixed<CR>
+
+" Start a full build with Dispatch plugin
+map <Leader>m :Make<CR>
+
+" Ugly Clearcase stuff for systems that has that installed...
+nmap <Leader>co :setlocal autoread<CR>:!ct co -nc %<CR>
+nmap <Leader>ci :!ct ci -nc %<CR>
+nmap <Leader>uco :!ct unco %<CR>
 
 " ####################
 " Plugin Configuration
@@ -73,14 +90,14 @@ map <Leader>s ysiw
 execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
 
 " Set the theme, different in gvim and vim
-" if has("gui_running") 
 colorscheme Dim2
-" endif
 
 " NERD Tree
 map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic
 let g:syntastic_auto_loc_list=1
-" let g:syntastic_disabled_filetypes=['html']
 let g:syntastic_enable_signs=1
+
+" CtrlP
+let g:ctrlp_match_window = 'max:25'
