@@ -61,13 +61,15 @@ set statusline+=%l/%L
 " Key remapping
 " #############
 
-map <F12> :wq!<CR>
+nnoremap <F12> :wq!<CR>
 
-" Go to beginning and end of current
+" Go to beginning and end of current line
 nnoremap H ^
+vnoremap H ^
 nnoremap L $
+vnoremap L $
 
-" Experimental
+" Fundamental ESC remapping!
 inoremap jk <esc>
 inoremap <esc> <nop>
 
@@ -77,15 +79,31 @@ inoremap <c-d> <esc>ddi
 " Delete word
 inoremap <c-w> <esc>diwi
 
-" Word to uppercase
-inoremap <c-u> <esc>viwUi
+" [U]PPERCASE word 
+inoremap <c-u> <right><esc>viwUi
+
+" *[E]mpasize* word
+inoremap <c-e> <esc><right>bdiwi**<esc>P<right><right>i
+
+" "qu[O]te" word.
+inoremap <c-o> <esc><right>bdiwi""<esc>P<right><right>i
+
+" Double quotaionmaks => Put cursor inbetween
+inoremap "" ""<esc>i
+inoremap '' ''<esc>i
+
+" Double semi-colons closes the line and goes to the next one
+inoremap ;; <esc>A;<CR>
+
+" Double comma adds comma outside of quotationmarks.
+inoremap ,, <esc>f"a, 
 
 " Change inside the next parenthesis
 onoremap p i(
 onoremap np :<c-u>normal! f(vi(<CR>
 
 " Clear function body
-onoremap b /return<CR>
+" onoremap b /return<CR>
 
 " ###############
 " Leader commands
@@ -95,27 +113,30 @@ onoremap b /return<CR>
 " unmap <space>
 let mapleader="\<space>"
 
+" [s]av[e] command
+noremap <Leader>se :w<CR>
+
 " Manage .vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
 
-" Line manipulation
+" Line manipulation stuff
 nnoremap <Leader>d ddO<esc>
 nnoremap <Leader>o o<up><esc>
 nnoremap <Leader>O O<down><esc>
 
-" Reindent a file
+" re[i]ndent a file
 nnoremap <Leader>i :normal gg=G<CR>
 
-" Kill current buffer
-nnoremap <Leader>k :bd<CR> 
+" [k]ill current buffer
+nnoremap <Leader>k :bd!<CR> 
 
-" Align text with Align plugin
+" [a]lign text with Align plugin
 nnoremap <Leader>a :Align=<CR>
 nnoremap <Leader>at :Align\|<CR>
 
 " Add surroundings with Surround plugin
-map <Leader>s ysiw
+" map <Leader>s ysiw
 
 " Init search with CtrlP plugin
 nnoremap <Leader>p :CtrlPMixed<CR>
