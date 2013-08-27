@@ -45,59 +45,129 @@ set clipboard=unnamedplus
 set showcmd
 
 " Ignore in filesearch and completion
-set wildignore+=*.swp,*.class
+set wildignore+=*.swp,*.class,*.jar,*.tar
+
+" Always show the statusline
+set laststatus=2
+
+" Modify the statusline
+set statusline=%F
+set statusline+=\ -\ 
+set statusline+=%y
+set statusline+=\ -\ 
+set statusline+=%l/%L
 
 " ############# 
 " Key remapping
 " #############
 
-nmap <F12> :wq!<CR>
+map <F12> :wq!<CR>
 
-" The forward breakout
-"inoremap <C-f> <Esc>/)\\|]\\|}\\|"\\|'<CR>a
+" Go to beginning and end of current
+nnoremap H ^
+nnoremap L $
 
-" Forward block cycle
-"noremap <silent> <C-f>  /(\\|[\\|{\\|"\\|'<ESC>a<ESC>
+" Experimental
+inoremap jk <esc>
+inoremap <esc> <nop>
+
+" Delete line 
+inoremap <c-d> <esc>ddi
+
+" Delete word
+inoremap <c-w> <esc>diwi
+
+" Word to uppercase
+inoremap <c-u> <esc>viwUi
+
+" Change inside the next parenthesis
+onoremap p i(
+onoremap np :<c-u>normal! f(vi(<CR>
+
+" Clear function body
+onoremap b /return<CR>
 
 " ###############
 " Leader commands
 " ###############
 
+" Use space as <Leader>
+" unmap <space>
+let mapleader="\<space>"
+
+" Manage .vimrc
+nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <Leader>sv :source $MYVIMRC<CR>
+
+" Line manipulation
+nnoremap <Leader>d ddO<esc>
+nnoremap <Leader>o o<up><esc>
+nnoremap <Leader>O O<down><esc>
+
+" Reindent a file
+nnoremap <Leader>i :normal gg=G<CR>
+
 " Kill current buffer
-map <Leader>k :bd<CR> 
+nnoremap <Leader>k :bd<CR> 
 
 " Align text with Align plugin
-map <Leader>a :Align=<CR>
-map <Leader>at :Align\|<CR>
+nnoremap <Leader>a :Align=<CR>
+nnoremap <Leader>at :Align\|<CR>
 
 " Add surroundings with Surround plugin
 map <Leader>s ysiw
 
 " Init search with CtrlP plugin
-map <Leader>p :CtrlPMixed<CR>
+nnoremap <Leader>p :CtrlPMixed<CR>
 
 " Start a full build with Dispatch plugin
-map <Leader>m :Make<CR>
+nnoremap <Leader>m :Make<CR>
 
 " Ugly Clearcase stuff for systems that has that installed...
-nmap <Leader>co :setlocal autoread<CR>:!ct co -nc %<CR>
-nmap <Leader>ci :!ct ci -nc %<CR>
-nmap <Leader>uco :!ct unco %<CR>
+nnoremap <Leader>co :setlocal autoread<CR>:!ct co -nc %<CR>
+nnoremap <Leader>ci :!ct ci -nc %<CR>
+nnoremap <Leader>uco :!ct unco %<CR>
+
+" ###############
+" # Abberivations
+" ###############
+
+" General
+iabbrev @@ rasmus.m.mattsson@gmail.com
+iabbrev zzm http://zzm.se 
+
+" Vim
+iabbrev <l <Leader>
+iabbrev nno nnoremap
+iabbrev ino inoremap
+iabbrev ono onoremap
+iabbrev vno vnoremap
+iabbrev nor noremap
+
+" Java
+iabbrev psf public static final
+iabbrev ps public static
+" iabbrev iff if() {<CR><CR>}<esc><up><up>f)i
+" iabbrev forr for(;;;)<left><left><left><left><del>
+
+" Training 
 
 " ####################
 " Plugin Configuration
 " ####################
+
+" Load all plugins
 execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
 
-" Set the theme, different in gvim and vim
+" Set the theme
 colorscheme Dim2
 
 " NERD Tree
 map <C-n> :NERDTreeToggle<CR>
 
-" Syntastic
+" Configure syntastic
 let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 
-" CtrlP
+" Configure CtrlP
 let g:ctrlp_match_window = 'max:25'
