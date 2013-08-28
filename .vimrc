@@ -63,13 +63,21 @@ set statusline+=%{fugitive#statusline()}
 " Key remapping
 " #############
 
+" Another way to quit
 nnoremap <F12> :wq!<CR>
 
 " Go to beginning and end of current line
 nnoremap H ^
 vnoremap H ^
+onoremap H ^
 nnoremap L $
 vnoremap L $
+onoremap L $
+
+" Swedish Programmer experiment
+inoremap aa å
+inoremap ae ä
+inoremap oe ö
 
 " Fundamental ESC remapping!
 inoremap jk <esc>
@@ -84,10 +92,10 @@ inoremap <c-w> <esc>diwi
 " [U]PPERCASE word 
 inoremap <c-u> <right><esc>viwUi
 
-" *[E]mpasize* word
+" *[e]mpasize* word
 inoremap <c-e> <esc><right>bdiwi**<esc>P<right><right>i
 
-" "qu[O]te" word.
+" "qu[o]te" word.
 inoremap <c-o> <esc><right>bdiwi""<esc>P<right><right>i
 
 " Double quotaionmaks => Put cursor inbetween
@@ -124,6 +132,9 @@ nnoremap <Leader>qu :q!<CR>
 " Manage .vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
+
+" Insert [t]ime[s]tamp
+nnoremap <Leader>ts :r !date<CR><up>J
 
 " Line manipulation stuff
 nnoremap <Leader>d ddO<esc>
