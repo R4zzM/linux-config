@@ -154,6 +154,7 @@ nnoremap <Leader>uco :!ct unco %<CR>
 
 " Git stuff (using fugitive)
 nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gs :Gstatus<CR>
 
 " ###############
 " # Abberivations
