@@ -156,7 +156,8 @@ nnoremap <Leader>ccu :!ct unco %<CR>
 
 " Git stuff (Depends on fugitive plugin)
 nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gs :Gstatus<CR> 
+nnoremap <Leader>gd :Gdiff<CR> 
 
 " ###############
 " # Abberivations
