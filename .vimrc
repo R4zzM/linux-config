@@ -148,7 +148,7 @@ nnoremap <Leader>d ddO<esc>
 nnoremap <Leader>o o<up><esc>
 nnoremap <Leader>O O<down><esc>
 
-" re[i]ndent a file
+" re[i]ndent a file (BUG: Remember position after intenting)
 nnoremap <Leader>i :normal gg=G<CR>
 
 " [k]ill current buffer
