@@ -1,7 +1,10 @@
 " NEEDS TO BE FIXED SECOTION
 " - np doesn't work if parenthesis is empty 
 " - Remember position after intenting.
-
+" - Don't start line with comment if above or below lines are comments
+" - Need an "insert block" <Leader> command, start with Java
+" - Need to be able to work with projects somehow. Especially in Java
+" 
 
 " ####################
 " Editor configuration
@@ -119,6 +122,14 @@ inoremap ;; <esc>A;<CR>
 " Double comma adds comma outside of quotationmarks.
 inoremap ,, <esc>f"a, 
 
+" Doubletapping *any* parenthesis button generates pair and puts cursor inside
+inoremap (( ()<esc>i
+inoremap )) ()<esc>i
+inoremap {{ {}<esc>i
+inoremap }} {}<esc>i
+inoremap [[ []<esc>i
+inoremap ]] []<esc>i
+
 " Change inside the next parenthesis 
 onoremap p i(
 onoremap np :<c-u>normal! f(vi(<CR>
@@ -205,8 +216,13 @@ iabbrev ps public static
 " Words
 iabbrev Strign String
 iabbrev taht that
-iabbrev dösn't doesn't
+iabbrev Isntance Instance
+iabbrev getIsntance getInstance
 
+" Abberivations to "parry" the swedish programmer layout
+iabbrev dösn't doesn't
+iabbrev gös goes
+iabbrev årdvark aardvark
 " iabbrev iff if() {<CR><CR>}<esc><up><up>f)i
 " iabbrev forr for(;;;)<left><left><left><left><del>
 
