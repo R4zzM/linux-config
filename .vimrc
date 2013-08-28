@@ -116,6 +116,9 @@ let mapleader="\<space>"
 " [s]av[e] command
 noremap <Leader>se :w<CR>
 
+" [qu]it with force command 
+nnoremap <Leader>qu :q!<CR>
+
 " Manage .vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
@@ -148,6 +151,9 @@ nnoremap <Leader>m :Make<CR>
 nnoremap <Leader>co :setlocal autoread<CR>:!ct co -nc %<CR>
 nnoremap <Leader>ci :!ct ci -nc %<CR>
 nnoremap <Leader>uco :!ct unco %<CR>
+
+" Git stuff (using fugitive)
+nnoremap <Leader>gc :Gcommit<CR>
 
 " ###############
 " # Abberivations
