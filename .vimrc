@@ -76,8 +76,14 @@ onoremap L $
 
 " Swedish Programmer experiment
 inoremap aa å
+inoremap AA Å
+inoremap Aa Å
 inoremap ae ä
+inoremap AE Ä
+inoremap Ae Ä
 inoremap oe ö
+inoremap OE Ö
+inoremap Oe Ö
 
 " Fundamental ESC remapping!
 inoremap jk <esc>
@@ -108,7 +114,8 @@ inoremap ;; <esc>A;<CR>
 " Double comma adds comma outside of quotationmarks.
 inoremap ,, <esc>f"a, 
 
-" Change inside the next parenthesis
+" Change inside the next parenthesis (BUG: np doesn't work if parenthesis is
+" empty).
 onoremap p i(
 onoremap np :<c-u>normal! f(vi(<CR>
 
@@ -179,7 +186,8 @@ iabbrev @@ rasmus.m.mattsson@gmail.com
 iabbrev zzm http://zzm.se 
 
 " Vim
-iabbrev <l <Leader>
+" iabbrev <l <Leader>
+iabbrev iab iabbrev
 iabbrev nno nnoremap
 iabbrev ino inoremap
 iabbrev ono onoremap
@@ -189,6 +197,12 @@ iabbrev nor noremap
 " Java
 iabbrev psf public static final
 iabbrev ps public static
+
+" Words
+iabbrev Strign String
+iabbrev taht that
+iabbrev dösn't doesn't
+
 " iabbrev iff if() {<CR><CR>}<esc><up><up>f)i
 " iabbrev forr for(;;;)<left><left><left><left><del>
 
