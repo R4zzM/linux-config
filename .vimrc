@@ -1,3 +1,8 @@
+" NEEDS TO BE FIXED SECOTION
+" - np doesn't work if parenthesis is empty 
+" - Remember position after intenting.
+
+
 " ####################
 " Editor configuration
 " ####################
@@ -114,8 +119,7 @@ inoremap ;; <esc>A;<CR>
 " Double comma adds comma outside of quotationmarks.
 inoremap ,, <esc>f"a, 
 
-" Change inside the next parenthesis (BUG: np doesn't work if parenthesis is
-" empty).
+" Change inside the next parenthesis 
 onoremap p i(
 onoremap np :<c-u>normal! f(vi(<CR>
 
@@ -148,7 +152,7 @@ nnoremap <Leader>d ddO<esc>
 nnoremap <Leader>o o<up><esc>
 nnoremap <Leader>O O<down><esc>
 
-" re[i]ndent a file (BUG: Remember position after intenting)
+" re[i]ndent a file 
 nnoremap <Leader>i :normal gg=G<CR>
 
 " [k]ill current buffer
