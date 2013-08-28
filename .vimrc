@@ -56,6 +56,8 @@ set statusline+=\ -\
 set statusline+=%y
 set statusline+=\ -\ 
 set statusline+=%l/%L
+set statusline+=\ -\ 
+set statusline+=%{fugitive#statusline()}
 
 " ############# 
 " Key remapping
@@ -134,17 +136,17 @@ nnoremap <Leader>i :normal gg=G<CR>
 " [k]ill current buffer
 nnoremap <Leader>k :bd!<CR> 
 
-" [a]lign text with Align plugin
+" [a]lign text (Depends on Align plugin)
 nnoremap <Leader>a :Align=<CR>
 nnoremap <Leader>at :Align\|<CR>
 
-" Add surroundings with Surround plugin
+" Add surroundings (Depends on Surround plugin)
 " map <Leader>s ysiw
 
 " Init search with CtrlP plugin
 nnoremap <Leader>p :CtrlPMixed<CR>
 
-" Start a full build with Dispatch plugin
+" Start a full build (Depends on Dispatch plugin)
 nnoremap <Leader>m :Make<CR>
 
 " Ugly Clearcase stuff for systems that has that installed...
@@ -152,7 +154,7 @@ nnoremap <Leader>ccco :setlocal autoread<CR>:!ct co -nc %<CR>
 nnoremap <Leader>ccci :!ct ci -nc %<CR>
 nnoremap <Leader>ccu :!ct unco %<CR>
 
-" Git stuff (using fugitive)
+" Git stuff (Depends on fugitive plugin)
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 
