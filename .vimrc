@@ -148,9 +148,9 @@ nnoremap <Leader>p :CtrlPMixed<CR>
 nnoremap <Leader>m :Make<CR>
 
 " Ugly Clearcase stuff for systems that has that installed...
-nnoremap <Leader>co :setlocal autoread<CR>:!ct co -nc %<CR>
-nnoremap <Leader>ci :!ct ci -nc %<CR>
-nnoremap <Leader>uco :!ct unco %<CR>
+nnoremap <Leader>ccco :setlocal autoread<CR>:!ct co -nc %<CR>
+nnoremap <Leader>ccci :!ct ci -nc %<CR>
+nnoremap <Leader>ccu :!ct unco %<CR>
 
 " Git stuff (using fugitive)
 nnoremap <Leader>gc :Gcommit<CR>
