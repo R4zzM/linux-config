@@ -4,6 +4,7 @@
 " - Don't start line with comment if above or below lines are comments
 " - Need an "insert block" <Leader> command, start with Java
 " - Need to be able to work with projects somehow. Especially in Java
+" - BUG: Quotations and empahzise doesn't work as they should when in a sentence
 " 
 
 " ####################
@@ -215,12 +216,15 @@ iabbrev ps public static
 
 " Words
 iabbrev Strign String
+iabbrev doesnt doesn't
+iabbrev dont don't
 iabbrev taht that
 iabbrev Isntance Instance
+iabbrev isntance instance
 iabbrev getIsntance getInstance
 
 " Abberivations to "parry" the swedish programmer layout
-iabbrev dösn't doesn't
+iabbrev dösnt doesn't
 iabbrev gös goes
 iabbrev årdvark aardvark
 " iabbrev iff if() {<CR><CR>}<esc><up><up>f)i
