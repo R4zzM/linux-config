@@ -3,7 +3,6 @@
 " - Remember position after intenting (maybe ok?)
 " - Need an "insert block" <Leader> command, start with Java
 " - BUG: Quotations and empahzise doesn't work as they should when in a sentence
-" 
 
 " ####################
 " Editor configuration
@@ -76,6 +75,10 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Another way to quit
 nnoremap <F12> :wq!<CR>
 
+" Hack to make scrolling be more smooth. 20 Lines at a time "
+noremap <c-u> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
+noremap <c-d> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E> 
+
 " Go to beginning and end of current line
 nnoremap H ^
 vnoremap H ^
@@ -92,18 +95,11 @@ inoremap ae ä
 inoremap AE Ä
 inoremap Ae Ä
 inoremap oe ö
-" - Need to be able to work with projects somehow. Especially in Java
 inoremap OE Ö
 inoremap Oe Ö
 
 " Fundamental ESC remapping!
 inoremap jk <esc>
-
-" Delete line 
-inoremap <c-d> <esc>ddi
-
-" Delete word
-inoremap <c-w> <esc>diwi
 
 " [U]PPERCASE word 
 inoremap <c-u> <right><esc>viwUi
@@ -114,8 +110,8 @@ inoremap <c-e> <esc><right>bdiwi**<esc>P<right><right>i
 " "qu[o]te" word.
 inoremap <c-o> <esc><right>bdiwi""<esc>P<right><right>i
 
-" Double quotaionmaks => Put cursor inbetween
-inoremap "" ""<esc>i
+" Double quotationmarks => Put cursor inbetween (v = qvote ;)
+inoremap <c-v> ""<esc>i
 inoremap '' ''<esc>i
 
 " Double semi-colons closes the line
@@ -134,7 +130,7 @@ inoremap <c-return> <esc>Bi
 inoremap <c-f> <right>
 
 " Control-return spaces out of textmass to the left
-inoremap <c-h> <left>
+inoremap <c-j> <left>
 
 " Doubletapping *any* parenthesis button generates pair and puts cursor inside
 inoremap (( ()<esc>i
@@ -143,9 +139,6 @@ inoremap {{ {}<esc>i
 inoremap }} {}<esc>i
 inoremap [[ []<esc>i
 inoremap ]] []<esc>i
-
-" % is way too important to be at 5
-nnoremap <c-m> %
 
 " Change inside the next parenthesis 
 onoremap p i(
@@ -253,20 +246,16 @@ inoreabbrev Jö Joe
 " iabbrev iff if() {<CR><CR>}<esc><up><up>f)i
 " iabbrev forr for(;;;)<left><left><left><left><del>
 
-" Training 
-
 " ####################
 " Plugin Configuration
 " ####################
 
 " Load all plugins
 execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
+" execute pathogen#helptags()
 
 " Set the theme
 colorscheme Dim2
-
-" NERD Tree
-"map <C-n> :NERDTreeToggle<CR>
 
 " Configure syntastic
 let g:syntastic_auto_loc_list = 1
