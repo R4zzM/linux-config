@@ -98,7 +98,6 @@ inoremap Oe Ö
 
 " Fundamental ESC remapping!
 inoremap jk <esc>
-inoremap <esc> <nop>
 
 " Delete line 
 inoremap <c-d> <esc>ddi
@@ -125,9 +124,18 @@ inoremap ;; <esc>A;
 " Double comma adds comma outside of textmass.
 inoremap ,, <esc>Ea, 
 
-" Double space spaces out of textmass
-inoremap <space><space> <esc>Ea
-  
+" Control-space spaces out of textmass to the right
+inoremap <c-space> <esc>Ea
+
+" Control-return spaces out of textmass to the left
+inoremap <c-return> <esc>Bi
+
+" Control-return spaces out of textmass to the left
+inoremap <c-f> <right>
+
+" Control-return spaces out of textmass to the left
+inoremap <c-h> <left>
+
 " Doubletapping *any* parenthesis button generates pair and puts cursor inside
 inoremap (( ()<esc>i
 inoremap )) ()<esc>i
@@ -258,11 +266,12 @@ execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
 colorscheme Dim2
 
 " NERD Tree
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
 
 " Configure syntastic
-let g:syntastic_auto_loc_list=1
-let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_enable_signs  = 1
 
 " Configure CtrlP
+let g:ctrlp_show_hidden  = 1
 let g:ctrlp_match_window = 'max:25'
