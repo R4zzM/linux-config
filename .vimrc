@@ -224,9 +224,11 @@ iabbrev isntance instance
 iabbrev getIsntance getInstance
 
 " Abberivations to "parry" the swedish programmer layout
-iabbrev dösnt doesn't
-iabbrev gös goes
-iabbrev årdvark aardvark
+inoreabbrev dösnt doesn't
+inoreabbrev gös goes
+inoreabbrev årdvark aardvark
+inoreabbrev jö joe 
+inoreabbrev Jö Joe 
 " iabbrev iff if() {<CR><CR>}<esc><up><up>f)i
 " iabbrev forr for(;;;)<left><left><left><left><del>
 
