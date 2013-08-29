@@ -1,9 +1,7 @@
 " NEEDS TO BE FIXED SECOTION
-" - np doesn't work if parenthesis is empty 
-" - Remember position after intenting.
-" - Don't start line with comment if above or below lines are comments
+" - np doesn't work if parenthesis is empty (This one is hard)
+" - Remember position after intenting (maybe ok?)
 " - Need an "insert block" <Leader> command, start with Java
-" - Need to be able to work with projects somehow. Especially in Java
 " - BUG: Quotations and empahzise doesn't work as they should when in a sentence
 " 
 
@@ -68,6 +66,9 @@ set statusline+=%l/%L
 set statusline+=\ -\ 
 set statusline+=%{fugitive#statusline()}
 
+" No autocommenting, atleast for the time being
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 " ############# 
 " Key remapping
 " #############
@@ -91,6 +92,7 @@ inoremap ae ä
 inoremap AE Ä
 inoremap Ae Ä
 inoremap oe ö
+" - Need to be able to work with projects somehow. Especially in Java
 inoremap OE Ö
 inoremap Oe Ö
 
@@ -117,12 +119,15 @@ inoremap <c-o> <esc><right>bdiwi""<esc>P<right><right>i
 inoremap "" ""<esc>i
 inoremap '' ''<esc>i
 
-" Double semi-colons closes the line and goes to the next one
-inoremap ;; <esc>A;<CR>
+" Double semi-colons closes the line
+inoremap ;; <esc>A;
 
-" Double comma adds comma outside of quotationmarks.
-inoremap ,, <esc>f"a, 
+" Double comma adds comma outside of textmass.
+inoremap ,, <esc>Ea, 
 
+" Double space spaces out of textmass
+inoremap <space><space> <esc>Ea
+  
 " Doubletapping *any* parenthesis button generates pair and puts cursor inside
 inoremap (( ()<esc>i
 inoremap )) ()<esc>i
@@ -130,6 +135,9 @@ inoremap {{ {}<esc>i
 inoremap }} {}<esc>i
 inoremap [[ []<esc>i
 inoremap ]] []<esc>i
+
+" % is way too important to be at 5
+nnoremap <c-m> %
 
 " Change inside the next parenthesis 
 onoremap p i(
@@ -164,15 +172,17 @@ nnoremap <Leader>d ddO<esc>
 nnoremap <Leader>o o<up><esc>
 nnoremap <Leader>O O<down><esc>
 
-" re[i]ndent a file 
-nnoremap <Leader>i :normal gg=G<CR>
+" [r]e[i]ndent a file
+nnoremap <Leader>ri mx:normal gg=G<CR>'xzz
 
 " [k]ill current buffer
-nnoremap <Leader>k :bd!<CR> 
+" nnoremap <Leader>k :bd!<CR> 
 
-" [a]lign text (Depends on Align plugin)
+" [a]lign text (Depnds on Align plugin)
+nnoremap <Leader>a :Align=<CR>
 nnoremap <Leader>a :Align=<CR>
 nnoremap <Leader>at :Align\|<CR>
+vnoremap <Leader>at :Align\|<CR>
 
 " Add surroundings (Depends on Surround plugin)
 " map <Leader>s ysiw
@@ -193,6 +203,10 @@ nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gs :Gstatus<CR> 
 nnoremap <Leader>gd :Gdiff<CR> 
 
+" Manage sessions (Depends on SessionMan plugin)
+nnoremap <Leader>sl :SessionList<CR>
+nnoremap <Leader>ss :SessionSave<CR>
+
 " ###############
 " # Abberivations
 " ###############
@@ -202,7 +216,6 @@ iabbrev @@ rasmus.m.mattsson@gmail.com
 iabbrev zzm http://zzm.se 
 
 " Vim
-" iabbrev <l <Leader>
 iabbrev iab iabbrev
 iabbrev nno nnoremap
 iabbrev ino inoremap
@@ -210,15 +223,15 @@ iabbrev ono onoremap
 iabbrev vno vnoremap
 iabbrev nor noremap
 
-" Java
 iabbrev psf public static final
 iabbrev ps public static
 
 " Words
-iabbrev Strign String
 iabbrev doesnt doesn't
 iabbrev dont don't
+iabbrev wasnt wasn't
 iabbrev taht that
+iabbrev Strign String
 iabbrev Isntance Instance
 iabbrev isntance instance
 iabbrev getIsntance getInstance
