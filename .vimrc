@@ -132,6 +132,9 @@ inoremap <c-f> <right>
 " Control-return spaces out of textmass to the left
 inoremap <c-j> <left>
 
+" Put equal sign in an easier to reach position "
+inoremap <c-e> =
+
 " Doubletapping *any* parenthesis button generates pair and puts cursor inside
 inoremap (( ()<esc>i
 inoremap )) ()<esc>i
@@ -160,6 +163,10 @@ noremap <Leader>se :w<CR>
 
 " [qu]it with force command 
 nnoremap <Leader>qu :q!<CR>
+
+" [t]ab[c]close and [b]uffer[d]elete
+nnoremap <Leader>tc :tabclose<CR>
+nnoremap <Leader>bd :bd<CR>
 
 " Manage .vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
@@ -198,6 +205,8 @@ nnoremap <Leader>m :Make<CR>
 nnoremap <Leader>ccco :setlocal autoread<CR>:!ct co -nc %<CR>
 nnoremap <Leader>ccci :!ct ci -nc %<CR>
 nnoremap <Leader>ccu :!ct unco %<CR>
+nnoremap <Leader>ccls :!ct lsco -me -recurse -short<CR>
+nnoremap <Leader>cclsa :!ct lsco -me -all -short<CR>
 
 " Git stuff (Depends on fugitive plugin)
 nnoremap <Leader>gc :Gcommit<CR>
