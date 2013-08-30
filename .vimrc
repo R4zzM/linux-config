@@ -16,6 +16,9 @@ syntax on
 " Read custom filetype konfiguration from ~/.vim/ftplugin/
 filetype plugin on
 
+" Set font
+set guifont=Inconsolata\ 12
+
 " Show line numbers
 set number
 
