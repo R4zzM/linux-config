@@ -1,14 +1,23 @@
 " NEEDS TO BE FIXED SECOTION
 " - np doesn't work if parenthesis is empty (This one is hard)
 " - Remember position after intenting (maybe ok?)
-" - Need an "insert block" <Leader> command, start with Java
 " - BUG: Quotations and empahzise doesn't work as they should when in a sentence
+" - :grep is a really nice cmd. Add the stuff from learnvimthehardway here.
+" - Investigate how to handle buffers efficently
+" - Add wrap and set linelength to 80 per language 
+" - See if there is any good way to edit the after/ftplugin/[lang].vim from inside a file
+" - Understand why after/ftplugin/vim.vim doesn't bite.
 
-" ####################
-" Editor configuration
-" ####################
+" Shouldn't it be possible to add this one to a vim.vim ftplugin file?
+augroup filetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
 
-" This section of the config handles configuration of the vim editor itself.
+" Editor configuration {{{
+
+" Should be set when this file is found. More of a statement...
+set nocompatible
 
 " Use highlightnig of text for different type of files (mostly code).
 syntax on
@@ -21,7 +30,7 @@ set guifont=Inconsolata\ 12
 
 " Show line numbers
 set number
-
+ 
 " Start searching as soon as text is typed after an '/'
 set incsearch
 
@@ -71,9 +80,9 @@ set statusline+=%{fugitive#statusline()}
 " No autocommenting, atleast for the time being
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" ############# 
-" Key remapping
-" #############
+" }}}
+
+" Key remappnings {{{
 
 " Another way to quit
 nnoremap <F12> :wq!<CR>
@@ -153,10 +162,10 @@ onoremap np :<c-u>normal! f(vi(<CR>
 " Clear function body
 " onoremap b /return<CR>
 
-" ###############
-" Leader commands
-" ###############
+" }}}
 
+" Leader commands {{{
+  
 " Use space as <Leader>
 " unmap <space>
 let mapleader="\<space>"
@@ -170,6 +179,9 @@ nnoremap <Leader>qu :q!<CR>
 " [t]ab[c]close and [b]uffer[d]elete
 nnoremap <Leader>tc :tabclose<CR>
 nnoremap <Leader>bd :bd<CR>
+
+" Cycle windows
+nnoremap <Leader>w <c-w>w
 
 " Manage .vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
@@ -220,9 +232,9 @@ nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>sl :SessionList<CR>
 nnoremap <Leader>ss :SessionSave<CR>
 
-" ###############
-" # Abberivations
-" ###############
+" }}}
+
+" Abberivations {{{
 
 " General
 iabbrev @@ rasmus.m.mattsson@gmail.com
@@ -258,9 +270,9 @@ inoreabbrev Jö Joe
 " iabbrev iff if() {<CR><CR>}<esc><up><up>f)i
 " iabbrev forr for(;;;)<left><left><left><left><del>
 
-" ####################
-" Plugin Configuration
-" ####################
+" }}}
+
+" Plugin configuration {{{
 
 " Load all plugins
 execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
@@ -276,3 +288,5 @@ let g:syntastic_enable_signs  = 1
 " Configure CtrlP
 let g:ctrlp_show_hidden  = 1
 let g:ctrlp_match_window = 'max:25'
+
+" }}}
