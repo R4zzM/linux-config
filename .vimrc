@@ -3,9 +3,6 @@
 " - Remember position after intenting (maybe ok?)
 " - BUG: Quotations and empahzise doesn't work as they should when in a sentence
 " - :grep is a really nice cmd. Add the stuff from learnvimthehardway here.
-" - Investigate how to handle buffers efficently
-" - Add wrap and set linelength to 80 per language 
-" - See if there is any good way to edit the after/ftplugin/[lang].vim from inside a file
 " - Understand why after/ftplugin/vim.vim doesn't bite.
 
 " Shouldn't it be possible to add this one to a vim.vim ftplugin file?
@@ -63,7 +60,7 @@ set clipboard=unnamedplus
 set showcmd
 
 " Ignore in filesearch and completion
-set wildignore+=*.swp,*.class,*.jar,*.tar
+set wildignore+=*.swp,*.class,*.jar,*.tar,*.jpg
 
 " Always show the statusline
 set laststatus=2
@@ -188,9 +185,10 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 
 " Edit .vim/after/ftplugin/[filetype].vim for the type of bufffer 
 " currently edited
+" let ft       = &ft
 let abs_path = $HOME . "/.vim/after/ftplugin/" . &ft . ".vim"
-let eap_cmd  = "normal! :vsplit " . abs_path . "\<CR>"
-nnoremap <Leader>ea :execute eap_cmd<CR>
+let cmd  = "normal! :vsplit " . abs_path . "\<CR>"
+nnoremap <Leader>ea :execute cmd<CR>
 
 " Source the current file in the current buffer
 nnoremap <Leader>sv :source %<CR>
