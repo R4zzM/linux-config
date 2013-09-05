@@ -87,7 +87,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Another way to quit
 nnoremap <F12> :wq!<CR>
 
-" Hack to make scrolling be more smooth. 20 Lines at a time "
+" Make scrolling be more smooth. 20 Lines at a time "
 noremap <c-u> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
 noremap <c-d> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E> 
 
@@ -177,15 +177,26 @@ noremap <Leader>se :w<CR>
 nnoremap <Leader>qu :q!<CR>
 
 " [t]ab[c]close and [b]uffer[d]elete
-nnoremap <Leader>tc :tabclose<CR>
-nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>tc :tabclose!<CR>
+nnoremap <Leader>bd :bd!<CR>
 
 " Cycle windows
 nnoremap <Leader>w <c-w>w
 
-" Manage .vimrc
+" Edit .vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
-nnoremap <Leader>sv :source $MYVIMRC<CR>
+
+" Edit .vim/after/ftplugin/[filetype].vim for the type of bufffer 
+" currently edited
+let abs_path = $HOME . "/.vim/after/ftplugin/" . &ft . ".vim"
+let eap_cmd  = "normal! :vsplit " . abs_path . "\<CR>"
+nnoremap <Leader>ea :execute eap_cmd<CR>
+
+" Source the current file in the current buffer
+nnoremap <Leader>sv :source %<CR>
+
+nnoremap <Leader>sap :vsplit $HOME/.vimrc/after/ftplugin/
+" nnoremap <Leader>sv :source $MYVIMRC<CR>
 
 " Insert [t]ime[s]tamp
 nnoremap <Leader>ts :r !date<CR><up>J
