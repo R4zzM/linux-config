@@ -113,11 +113,6 @@ inoremap jk <esc>
 " [U]PPERCASE word 
 inoremap <c-u> <right><esc>viwUi
 
-" *[e]mpasize* word
-inoremap <c-e> <esc><right>bdiwi**<esc>P<right><right>i
-
-" "qu[o]te" word.
-inoremap <c-o> <esc><right>bdiwi""<esc>P<right><right>i
 
 " Double quotationmarks => Put cursor inbetween (v = qvote ;)
 inoremap <c-v> ""<esc>i
@@ -198,6 +193,14 @@ nnoremap <Leader>sap :vsplit $HOME/.vimrc/after/ftplugin/
 
 " Insert [t]ime[s]tamp
 nnoremap <Leader>ts :r !date<CR><up>J
+
+" Add *empasizes*
+nnoremap <Leader>em ciw**<esc>P
+vnoremap <Leader>em c**<esc>P
+
+" Add "quotes"
+nnoremap <Leader>qo ciw""<esc>P
+vnoremap <Leader>qo c""<esc>P
 
 " Line manipulation stuff
 nnoremap <Leader>d ddO<esc>
