@@ -1,4 +1,4 @@
-" NEEDS TO BE FIXED SECOTION
+" NEEDS TO BE FIXED SECTION
 " - np doesn't work if parenthesis is empty (This one is hard)
 " - Remember position after intenting (maybe ok?)
 " - BUG: Quotations and empahzise doesn't work as they should when in a sentence
@@ -245,6 +245,9 @@ nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>sl :SessionList<CR>
 nnoremap <Leader>ss :SessionSave<CR>
 
+" Enable the taglist (depends on exuberant ctags and taglist)
+nnoremap <Leader>tl :TlistToggle<CR>
+
 " }}}
 
 " Abberivations {{{
@@ -289,7 +292,7 @@ inoreabbrev Jö Joe
 
 " Load all plugins
 execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
-" execute pathogen#helptags()
+execute pathogen#helptags()
 
 " Set the theme
 colorscheme Dim2
@@ -301,5 +304,10 @@ let g:syntastic_enable_signs  = 1
 " Configure CtrlP
 let g:ctrlp_show_hidden  = 1
 let g:ctrlp_match_window = 'max:25'
+
+" Configure taglist
+let Tlist_Ctags_Cmd='/home/erasmat/bin/ctags'
+highlight link MyTagListFileName TabLineSel
+highlight link MyTagListTitle Special
 
 " }}}
