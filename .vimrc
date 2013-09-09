@@ -23,7 +23,7 @@ syntax on
 filetype plugin on
 
 " Set font
-set guifont=Inconsolata\ 12
+set guifont=Inconsolata\ 11
 
 " Show line numbers
 set number
