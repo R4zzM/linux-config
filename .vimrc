@@ -202,11 +202,12 @@ nnoremap <Leader>p :CtrlPMixed<CR>
 nnoremap <Leader>m :Make<CR>
 
 " Ugly Clearcase stuff for systems that has that installed...
-nnoremap <Leader>ccco :setlocal autoread<CR>:!ct co -nc %<CR>
-nnoremap <Leader>ccci :!ct ci -nc %<CR>
-nnoremap <Leader>ccu :!ct unco %<CR>
-nnoremap <Leader>ccls :!ct lsco -me -recurse -short<CR>
-nnoremap <Leader>cclsa :!ct lsco -me -all -short<CR>
+nnoremap <Leader>cco :setlocal autoread<CR>:!ct co -nc %<CR>
+nnoremap <Leader>cci :!ct ci -nc %<CR>
+nnoremap <Leader>cu :!ct unco %<CR>
+nnoremap <Leader>cls :!ct lsco -me -recurse -short<CR>
+nnoremap <Leader>clsa :!ct lsco -me -all -short<CR>
+nnoremap <Leader>ccia :!ct lsco -me -recurse -short | xargs ct ci -nc<CR>
 
 " Git stuff (Depends on fugitive plugin)
 nnoremap <Leader>gc :Gcommit<CR>

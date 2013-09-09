@@ -3,3 +3,6 @@
 
 # Skip .netrwhist file
 .vim/.netrwhist
+
+# Any swapfiles
+*.swp
