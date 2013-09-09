@@ -288,26 +288,61 @@ inoreabbrev Jö Joe
 
 " }}}
 
-" Plugin configuration {{{
+" Plugin: Pathogen {{{
 
-" Load all plugins
-execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
+" Determine if we are in the hub by checking if clearcase exists
+let ct_exec = system("which ct")
+if (v:shell_error ==# 0)
+  echom "Pathogen: Loading plugins from ~/.vim"
+  execute pathogen#infect()
+else
+  echom "Pathogen: Loading plugins from ~/Dropbox/..."
+  execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
+endif
+
 execute pathogen#helptags()
 
-" Set the theme
-colorscheme Dim2
+"}}}
 
-" Configure syntastic
+" Plugin: Syntastic {{{ 
+
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_enable_signs  = 1
 
-" Configure CtrlP
+" }}}
+
+" Plugin: CtrlP {{{
+
 let g:ctrlp_show_hidden  = 1
 let g:ctrlp_match_window = 'max:25'
 
-" Configure taglist
-let Tlist_Ctags_Cmd='/home/erasmat/bin/ctags'
+" }}}
+
+" Plugin: Taglist {{{
+
+" Check if I have compiled exuberant ctags myself. If I have, I want to use
+" it!
+let custom_ctags = system("which " . $HOME . "/bin/ctags")
+if(v:shell_error ==# 0)
+  echom "Taglist: Using /home/erasmat/bin/ctags"
+  let Tlist_Ctags_Cmd='/home/erasmat/bin/ctags'
+else
+  let ctags_exec = system("which ctags")
+  if(v:shell_error ==# 0)
+    echom "Taglist: Using " . ctags_exec
+  else
+    echom "Taglist error: Exuberent ctags not found!"
+  endif
+endif
+
 highlight link MyTagListFileName TabLineSel
 highlight link MyTagListTitle Special
+
+" }}}
+
+" Theme {{{
+
+" Set the theme
+colorscheme Dim2
 
 " }}}
