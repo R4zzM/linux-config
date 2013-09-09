@@ -23,7 +23,7 @@ syntax on
 filetype plugin on
 
 " Set font
-set guifont=Inconsolata\ 11
+" set guifont=Inconsolata\ 11
 
 " Show line numbers
 set number
@@ -234,7 +234,7 @@ nnoremap <Leader>cci :!ct ci -nc %<CR>
 nnoremap <Leader>cu :!ct unco %<CR>
 nnoremap <Leader>cls :!ct lsco -me -recurse -short<CR>
 nnoremap <Leader>clsa :!ct lsco -me -all -short<CR>
-nnoremap <Leader>ccia :!ct lsco -me -recurse -short | xargs ct ci -nc<CR>
+nnoremap <Leader>ccia :!ct lsco -me -recurse -short \| xargs ct ci -nc<CR>
 
 " Git stuff (Depends on fugitive plugin)
 nnoremap <Leader>gc :Gcommit<CR>
