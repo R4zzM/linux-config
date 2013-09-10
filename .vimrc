@@ -1,7 +1,6 @@
 " NEEDS TO BE FIXED SECTION
 " - np doesn't work if parenthesis is empty (This one is hard)
 " - Remember position after intenting (maybe ok?)
-" - BUG: Quotations and empahzise doesn't work as they should when in a sentence
 " - :grep is a really nice cmd. Add the stuff from learnvimthehardway here.
 " - Understand why after/ftplugin/vim.vim doesn't bite.
 
@@ -91,8 +90,15 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 nnoremap <F12> :wq!<CR>
 
 " Make scrolling be more smooth. 20 Lines at a time "
-noremap <c-u> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
-noremap <c-d> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E> 
+noremap <c-u> <C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
+             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
+             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
+             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
+
+noremap <c-d> <C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
+             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
+             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
+             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
 
 " Go to beginning and end of current line
 nnoremap H ^
@@ -119,7 +125,6 @@ inoremap jk <esc>
 " [U]PPERCASE word 
 inoremap <c-u> <right><esc>viwUi
 
-
 " Double quotationmarks => Put cursor inbetween (v = qvote ;)
 inoremap <c-v> ""<esc>i
 inoremap '' ''<esc>i
@@ -131,10 +136,12 @@ inoremap ;; <esc>A;
 inoremap ,, <esc>Ea, 
 
 " Control-space spaces out of textmass to the right
-inoremap <c-space> <esc>Ea
+inoremap <c-space> <esc>:call NextWordNoLineChange()<CR>a
+nnoremap <c-space> :call NextWordNoLineChange()<CR>a
 
 " Control-return spaces out of textmass to the left
-inoremap <c-return> <esc>Bi
+inoremap <c-return> <esc>:call PrevWordNoLineChange()<CR>i
+nnoremap <c-return> :call PrevWordNoLineChange()<CR>
 
 " Control-return spaces out of textmass to the left
 inoremap <c-f> <right>
@@ -350,5 +357,29 @@ highlight link MyTagListTitle Special
 
 " Set the theme
 colorscheme Dim2
+
+" }}}
+
+" Support Functions {{{
+
+" Go to the next word but don't change line
+function! NextWordNoLineChange()
+  let line_before_jump = line(".")
+  execute "normal! E"
+  let line_after_jump = line(".")
+  if(line_before_jump !=# line_after_jump)
+    execute "normal! \<up>$"
+  endif
+endfunction
+
+" Go to the previous word but don't change line
+function! PrevWordNoLineChange()
+  let line_before_jump = line(".")
+  execute "normal! B"
+  let line_after_jump = line(".")
+  if(line_before_jump !=# line_after_jump)
+    execute "normal! W"
+  endif
+endfunction
 
 " }}}
