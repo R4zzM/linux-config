@@ -11,6 +11,12 @@ augroup filetype_vim
   autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
+" Actually I only want rc.lua to behave like this. What should I do?
+augroup filetype_lua
+  autocmd!
+  autocmd FileType lua setlocal foldmethod=marker
+augroup END
+
 " Editor configuration {{{
 
 " Should be set when this file is found. More of a statement...
