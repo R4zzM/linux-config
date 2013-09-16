@@ -49,15 +49,20 @@ set autoindent
 set smartindent
 
 " Use spaces instead of tabs
-" To insert tabs (needed e.g in makefiles) I first press <CTRL-v> followed by <TAB> 
+" To insert tabs (needed e.g in makefiles) I first press <CTRL-v> followed by
+" <TAB> 
 set expandtab
 set shiftwidth=2
 set softtabstop=2
 
+" Max 80 chars per line. Vizualize.
+set textwidth=80
+set colorcolumn=81
+
 " Left, right and backspace keys wraps the cursor
 set whichwrap+=<,>,h,l 
 
-" Backspace erases
+" Backspace erases as it should do
 set backspace=2 
 
 " Ignore interpretation of remapped keys when pasting into buffer
