@@ -89,6 +89,13 @@ set statusline+=%l/%L
 set statusline+=\ -\ 
 set statusline+=%{fugitive#statusline()}
 
+" Add autocompletion menu in command mode
+set wildmode=full
+set wildmenu 
+
+" Keep cursor (almost) in the middle of the screen
+set scrolloff=30
+
 " No autocommenting, atleast for the time being
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
