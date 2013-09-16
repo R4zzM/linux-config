@@ -1,5 +1,4 @@
 " NEEDS TO BE FIXED SECTION
-" - np doesn't work if parenthesis is empty (This one is hard)
 " - Remember position after intenting (maybe ok?)
 " - :grep is a really nice cmd. Add the stuff from learnvimthehardway here.
 " - Understand why after/ftplugin/vim.vim doesn't bite.
@@ -152,6 +151,9 @@ inoremap <c-j> <left>
 " Put equal sign in an easier to reach position "
 inoremap <c-e> =
 
+" Insert block
+inoremap <c-b> {}<left><CR><CR><backspace><up><c-t>
+
 " Doubletapping *any* parenthesis button generates pair and puts cursor inside
 inoremap (( ()<esc>i
 inoremap )) ()<esc>i
@@ -160,9 +162,15 @@ inoremap }} {}<esc>i
 inoremap [[ []<esc>i
 inoremap ]] []<esc>i
 
+" For Vimwiki purposes to override the above.
+" Maybe {{ should be removed in .vim files now that I think about it...
+inoremap {{{ {{{<right>
+inoremap }}} }}}<right>
+
 " Change inside the next parenthesis 
 onoremap p i(
-onoremap np :<c-u>normal! f(vi(<CR>
+" onoremap np :<c-u>normal! f(vi(<CR>
+onoremap np :call NextParenthesis()<CR>
 
 " Clear function body
 " onoremap b /return<CR>
@@ -194,9 +202,9 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 " Edit .vim/after/ftplugin/[filetype].vim for the type of bufffer 
 " currently edited
 " let ft       = &ft
-let abs_path = $HOME . "/.vim/after/ftplugin/" . &ft . ".vim"
-let cmd  = "normal! :vsplit " . abs_path . "\<CR>"
-nnoremap <Leader>ea :execute cmd<CR>
+" let abs_path = $HOME . "/.vim/after/ftplugin/" . &ft . ".vim"
+" let cmd  = "normal! :vsplit " . abs_path . "\<CR>"
+nnoremap <Leader>eft :call OpenFtPluginFile(&ft)<CR>
 
 " Source the current file in the current buffer
 nnoremap <Leader>sv :source %<CR>
@@ -269,16 +277,17 @@ nnoremap <Leader>tl :TlistToggle<CR>
 iabbrev @@ rasmus.m.mattsson@gmail.com
 iabbrev zzm http://zzm.se 
 
-" Vim
-iabbrev iab iabbrev
-iabbrev nno nnoremap
-iabbrev ino inoremap
-iabbrev ono onoremap
-iabbrev vno vnoremap
-iabbrev nor noremap
+" Programming
+inoreabbrev ret return
+inoreabbrev exec execute
 
-iabbrev psf public static final
-iabbrev ps public static
+" Vim
+inoreabbrev iab inoreabbrev
+inoreabbrev nno nnoremap
+inoreabbrev ino inoremap
+inoreabbrev ono onoremap
+inoreabbrev vno vnoremap
+inoreabbrev nor noremap
 
 " Words
 iabbrev doesnt doesn't
@@ -289,15 +298,6 @@ iabbrev Strign String
 iabbrev Isntance Instance
 iabbrev isntance instance
 iabbrev getIsntance getInstance
-
-" Abberivations to "parry" the swedish programmer layout
-inoreabbrev dösnt doesn't
-inoreabbrev gös goes
-inoreabbrev årdvark aardvark
-inoreabbrev jö joe 
-inoreabbrev Jö Joe 
-" iabbrev iff if() {<CR><CR>}<esc><up><up>f)i
-" iabbrev forr for(;;;)<left><left><left><left><del>
 
 " }}}
 
@@ -353,6 +353,19 @@ highlight link MyTagListTitle Special
 
 " }}}
 
+" Plugin: Vimwiki {{{
+
+" Enable folding
+let g:vimwiki_folding = 'expr'
+
+" Enable code highlighting 
+let wiki                 = {}
+let wiki.path            = '~/vimwiki'
+let wiki.nested_syntaxes = {'python': 'python', 'perl': 'perl'}
+let g:vimwiki_list       = [wiki]
+
+" }}}
+
 " Theme {{{
 
 " Set the theme
@@ -380,6 +393,20 @@ function! PrevWordNoLineChange()
   if(line_before_jump !=# line_after_jump)
     execute "normal! W"
   endif
+endfunction
+
+" Open the ftplugin file for the current ft
+function! OpenFtPluginFile(ft)
+  let path  = $HOME . "/.vim/ftplugin/" . a:ft . "/" . a:ft . ".vim"
+  execute "normal! :vsplit " . path . "\<CR>"
+endfunction
+
+" Movement to the next parenthesis. 
+" 'dummy' is first inserted so that something can be selected incase it is
+" empty. It is always removed. Time will tell if this breaks something.
+function! NextParenthesis()
+  execute "normal! f(adummy\<esc>"
+  execute "normal! F(\<right>vt)"
 endfunction
 
 " }}}
