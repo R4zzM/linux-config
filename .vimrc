@@ -15,6 +15,12 @@ augroup filetype_lua
   autocmd FileType lua setlocal foldmethod=marker
 augroup END
 
+" Re-generate the html page when the buffer is saved
+augroup filetype_wiki
+  autocmd!
+  autocmd BufWritePost *.wiki :silent Vimwiki2HTML
+augroup END
+
 " Editor configuration {{{
 
 " Should be set when this file is found. More of a statement...
@@ -360,7 +366,8 @@ let g:vimwiki_folding = 'expr'
 
 " Enable code highlighting 
 let wiki                 = {}
-let wiki.path            = '~/vimwiki'
+let wiki.path            = '~/Dropbox/vimwiki'
+let wiki.path_html       = '~/Dropbox/Public/vimwiki-html/'
 let wiki.nested_syntaxes = {'python': 'python', 'perl': 'perl'}
 let g:vimwiki_list       = [wiki]
 
