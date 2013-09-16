@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+xrandr --outoput VGA1 --mode 1680x1050
+echo "awesome.restart()" | awesome-client
