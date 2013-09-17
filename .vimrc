@@ -32,9 +32,6 @@ syntax on
 " Read custom filetype konfiguration from ~/.vim/ftplugin/
 filetype plugin on
 
-" Set font
-" set guifont=Inconsolata\ 11
-
 " Show line numbers
 set number
  
@@ -140,7 +137,7 @@ inoremap Oe Ö
 inoremap jk <esc>
 
 " [U]PPERCASE word 
-inoremap <c-u> <right><esc>viwUi
+inoremap <c-u> <right><esc>viwUea
 
 " Double quotationmarks => Put cursor inbetween (v = qvote ;)
 inoremap <c-v> ""<esc>i
@@ -265,7 +262,7 @@ vnoremap <Leader>at :Align\|<CR>
 nnoremap <Leader>p :CtrlPMixed<CR>
 
 " Start a full build (Depends on Dispatch plugin)
-nnoremap <Leader>m :Make<CR>
+nnoremap <Leader>mk :Make<CR>
 
 " Ugly Clearcase stuff for systems that has that installed...
 nnoremap <Leader>cco :setlocal autoread<CR>:!ct co -nc %<CR>
