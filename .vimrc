@@ -1,7 +1,6 @@
 " NEEDS TO BE FIXED SECTION
 " - Remember position after intenting (maybe ok?)
 " - :grep is a really nice cmd. Add the stuff from learnvimthehardway here.
-" - Understand why after/ftplugin/vim.vim doesn't bite.
 
 " Shouldn't it be possible to add this one to a vim.vim ftplugin file?
 augroup filetype_vim
@@ -91,7 +90,7 @@ set wildmode=full
 set wildmenu 
 
 " Keep cursor (almost) in the middle of the screen
-set scrolloff=30
+set scrolloff=15
 
 " No autocommenting, atleast for the time being
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -135,6 +134,7 @@ inoremap Oe Ö
 
 " Fundamental ESC remapping!
 inoremap jk <esc>
+inoremap fd <esc>
 
 " [U]PPERCASE word 
 inoremap <c-u> <right><esc>viwUea
@@ -182,10 +182,17 @@ inoremap ]] []<esc>i
 inoremap {{{ {{{<right>
 inoremap }}} }}}<right>
 
-" Change inside the next parenthesis 
+" Change inside parenthesis 
 onoremap p i(
-" onoremap np :<c-u>normal! f(vi(<CR>
+
+" Change inside the next parenthesis
 onoremap np :call NextParenthesis()<CR>
+
+" Change inside quotes 
+onoremap qo i"
+
+" Change inside next quotes 
+onoremap nqo :call NextQuote()<CR>
 
 " Clear function body
 " onoremap b /return<CR>
@@ -425,4 +432,9 @@ function! NextParenthesis()
   execute "normal! F(\<right>vt)"
 endfunction
 
+" Same as with NextParenthesis() above but for doublequotes
+function! NextQuote()
+  execute "normal! f\"adummy\<esc>"
+  execute "normal! F\"\<right>vt\""
+endfunction
 " }}}
