@@ -3,6 +3,9 @@
 " - :grep is a really nice cmd. Add the stuff from learnvimthehardway here.
 
 " Shouldn't it be possible to add this one to a vim.vim ftplugin file?
+
+let maplocalleader="\\"
+
 augroup filetype_vim
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
@@ -97,29 +100,22 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " }}}
 
-" Key remappnings {{{
-
-" Another way to quit
-nnoremap <F12> :wq!<CR>
-
-" Make scrolling be more smooth. 20 Lines at a time "
-noremap <c-u> <C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
-             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
-             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
-             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
-
-noremap <c-d> <C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
-             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
-             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
-             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
+" vnoremap {{{
 
 " Go to beginning and end of current line
-nnoremap H ^
 vnoremap H ^
-onoremap H ^
-nnoremap L $
 vnoremap L $
-onoremap L $
+
+" Insert quotes and empa.. 
+vnoremap <Leader>em c**<esc>P
+vnoremap <Leader>qo c""<esc>P
+
+" Align
+vnoremap <Leader>at :Align\|<CR>
+
+" }}}
+
+" inoremap {{{
 
 " Swedish Programmer experiment
 inoremap aa å
@@ -151,11 +147,9 @@ inoremap ,, <esc>Ea,
 
 " Control-space spaces out of textmass to the right
 inoremap <c-space> <esc>:call NextWordNoLineChange()<CR>a
-nnoremap <c-space> :call NextWordNoLineChange()<CR>a
 
 " Control-return spaces out of textmass to the left
 inoremap <c-return> <esc>:call PrevWordNoLineChange()<CR>i
-nnoremap <c-return> :call PrevWordNoLineChange()<CR>
 
 " Control-return spaces out of textmass to the left
 inoremap <c-f> <right>
@@ -182,17 +176,49 @@ inoremap ]] []<esc>i
 inoremap {{{ {{{<right>
 inoremap }}} }}}<right>
 
-" Change inside parenthesis 
+" }}}
+
+" nnoremap {{{
+
+nnoremap <c-space> :call NextWordNoLineChange()<CR>
+nnoremap <c-return> :call PrevWordNoLineChange()<CR>
+
+" Another way to quit
+nnoremap <F12> :wq!<CR>
+
+" Make scrolling be more smooth. 20 Lines at a time "
+noremap <c-u> <C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
+             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
+             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
+             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
+
+noremap <c-d> <C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
+             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
+             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
+             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
+
+nnoremap L $
+nnoremap H ^
+
+" }}}
+
+" onoremap {{{
+
+" Inside parenthesis 
 onoremap p i(
 
-" Change inside the next parenthesis
+" Inside the next parenthesis on the same line
 onoremap np :call NextParenthesis()<CR>
 
-" Change inside quotes 
+" Inside current quotes 
 onoremap qo i"
 
-" Change inside next quotes 
+" Inside next quotes on the same line
 onoremap nqo :call NextQuote()<CR>
+
+" End / Beginning of line
+onoremap H ^
+onoremap L $
 
 " Clear function body
 " onoremap b /return<CR>
@@ -239,11 +265,9 @@ nnoremap <Leader>ts :r !date<CR><up>J
 
 " Add *empasizes*
 nnoremap <Leader>em ciw**<esc>P
-vnoremap <Leader>em c**<esc>P
 
 " Add "quotes"
 nnoremap <Leader>qo ciw""<esc>P
-vnoremap <Leader>qo c""<esc>P
 
 " Line manipulation stuff
 nnoremap <Leader>d ddO<esc>
@@ -260,7 +284,6 @@ nnoremap <Leader>ri mx:normal gg=G<CR>'xzz
 nnoremap <Leader>a :Align=<CR>
 nnoremap <Leader>a :Align=<CR>
 nnoremap <Leader>at :Align\|<CR>
-vnoremap <Leader>at :Align\|<CR>
 
 " Add surroundings (Depends on Surround plugin)
 " map <Leader>s ysiw

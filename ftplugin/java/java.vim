@@ -1,5 +1,5 @@
 " \ is the local leader
-let maplocalleader = "\\"
+let maplocalleader = "\<backspace>"
 
 setlocal smarttab
 setlocal expandtab
