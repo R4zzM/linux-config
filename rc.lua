@@ -73,7 +73,11 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/erasmat/.config/awesome/themes/wabbit/theme.lua")
+if elx then
+  beautiful.init("/home/erasmat/.config/awesome/themes/wabbit/theme.lua")
+else 
+  beautiful.init("/home/rasmus/.config/awesome/themes/arch/theme.lua")
+end
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
