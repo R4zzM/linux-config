@@ -297,9 +297,6 @@ nnoremap <Leader>a :Align=<CR>
 nnoremap <Leader>a :Align=<CR>
 nnoremap <Leader>at :Align\|<CR>
 
-" Add surroundings (Depends on Surround plugin)
-" map <Leader>s ysiw
-
 " Init search with CtrlP plugin
 nnoremap <Leader>p :CtrlPMixed<CR>
 
@@ -364,15 +361,16 @@ iabbrev getIsntance getInstance
 " Plugin: Pathogen {{{
 
 " Determine if we are in the hub by checking if clearcase exists
-let ct_exec = system("which ct")
-if (v:shell_error ==# 0)
-  echom "Pathogen: Loading plugins from ~/.vim"
-  execute pathogen#infect()
-else
-  echom "Pathogen: Loading plugins from ~/Dropbox/..."
-  execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
-endif
+" let ct_exec = system("which ct")
+" if (v:shell_error ==# 0)
+"   echom "Pathogen: Loading plugins from ~/.vim"
+"   execute pathogen#infect()
+" else
+"   echom "Pathogen: Loading plugins from ~/Dropbox/..."
+"   execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
+" endif
 
+execute pathogen#infect()
 execute pathogen#helptags()
 
 "}}}
