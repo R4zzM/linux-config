@@ -110,6 +110,17 @@ vnoremap L $
 vnoremap <Leader>em c**<esc>P
 vnoremap <Leader>qo c""<esc>P
 
+" Surround visually selected text
+vnoremap s( c()<esc>P
+vnoremap s) c()<esc>P
+vnoremap s[ c[]<esc>P
+vnoremap s] c[]<esc>P
+vnoremap s{ c{}<esc>P
+vnoremap s} c{}<esc>P
+vnoremap s' c''<esc>P
+vnoremap s* c**<esc>P
+vnoremap s" c""<esc>P
+
 " Align
 vnoremap <Leader>at :Align\|<CR>
 
@@ -187,18 +198,19 @@ nnoremap <c-return> :call PrevWordNoLineChange()<CR>
 nnoremap <F12> :wq!<CR>
 
 " Make scrolling be more smooth. 20 Lines at a time "
-noremap <c-u> <C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
-             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
-             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
-             \<C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
+noremap <c-u> <C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
 
-noremap <c-d> <C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
-             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
-             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
-             \<C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
+noremap <c-d> <C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
 
+" Go to end of line and beginning of line 
 nnoremap L $
 nnoremap H ^
+
+" Simplify navigation between views
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 
 " }}}
 
@@ -314,6 +326,9 @@ nnoremap <Leader>ss :SessionSave<CR>
 " Enable the taglist (depends on exuberant ctags and taglist)
 nnoremap <Leader>tl :TlistToggle<CR>
 
+" Fast access to VIM builtin functions
+nnoremap <Leader>api :help function-list<CR>
+
 " }}}
 
 " Abberivations {{{
@@ -401,7 +416,7 @@ highlight link MyTagListTitle Special
 " Plugin: Vimwiki {{{
 
 " Enable folding
-let g:vimwiki_folding = 'expr'
+" let g:vimwiki_folding = 'expr'
 
 " Enable code highlighting 
 let wiki                 = {}
