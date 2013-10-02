@@ -15,36 +15,26 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
--- Used to determine if the comupter is the my office computer or any other 
--- computer that I own (of which all are assumed to be configured the same way)
--- elx = 1 <= office computer
-local elx = 0;
+-- R4zzM's (totally) awesome support lib
+local rcsupport = require("rcsupport")
 
--- Figure out if I'm in the office (Ubuntu) or at home (Arch Linux).
-handle = io.popen("hostname")
-hostname = io.input(handle):read()
-if hostname == "elx70cwpp1-x3" then
-  elx = 1
+-- Enable / disable debug messages when loading this file
+rcsupport.enable_dbg()
+--rcsupport.disable_dbg()
+
+rcsupport.dbg("hostname = " .. rcsupport.get_hostname())
+if rcsupport.is_elx() then
+  rcsupport.dbg("elx = true")
+else 
+  rcsupport.dbg("elx = false")
 end
 
--- {{{ Global
+rcsupport.dbg("Starting services...")
 
--- Used to autostart applications and is insensitive to awesome restarts
--- Got it from the Awesome wiki.
-function run_once(cmd)
-  findme = cmd
-  firstspace = cmd:find(" ")
-  if firstspace then
-    findme = cmd:sub(0, firstspace-1)
-  end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+if rcsupport.is_elx() then
+  rcsupport.run_once("dropbox start")
+  rcsupport.run_once("pidgin")
 end
-
-if elx then
-  run_once("dropbox start")
-  run_once("pidgin")
-end
---- }}}
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -73,7 +63,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-if elx then
+if rcsupport.is_elx() then
   beautiful.init("/home/erasmat/.config/awesome/themes/wabbit/theme.lua")
 else 
   beautiful.init("/home/rasmus/.config/awesome/themes/arch/theme.lua")
@@ -122,7 +112,7 @@ end
 tags = {}
 
 -- There might be a more goodlooking solution to this..
-if elx then 
+if rcsupport.is_elx() then 
   for s = 1, screen.count() do
       -- Each screen has its own tag table.
       tags[s] = awful.tag({ "Browser", "E-mail", "Localhost", "inst_poland", "ctrl_poland", 6, 7, "lnts42", "Wiki" }, s, layouts[1])
@@ -136,6 +126,9 @@ end
 -- }}}
 
 -- {{{ Menu
+
+rcsupport.dbg("Creating menu...")
+
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
@@ -151,12 +144,14 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
-
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- {{{ Wibox
+
+rcsupport.dbg("Creating wibox...")
+
 -- Create a space
 myspacing = wibox.widget.textbox()
 myspacing:set_text("  ")
@@ -257,6 +252,9 @@ end
 -- }}}
 
 -- {{{ Mouse bindings
+
+rcsupport.dbg("Creating mousebindings...")
+
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
@@ -265,6 +263,9 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Key bindings
+
+rcsupport.dbg("Creating keybindings...")
+
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
@@ -398,6 +399,9 @@ root.keys(globalkeys)
 -- }}}
 
 -- {{{ Rules
+
+rcsupport.dbg("Creating rules...")
+
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
@@ -419,6 +423,9 @@ awful.rules.rules = {
 -- }}}
 
 -- {{{ Signals
+
+rcsupport.dbg("Connecting signals...")
+
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
     -- Enable sloppy focus
