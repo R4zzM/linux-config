@@ -139,7 +139,7 @@ inoremap oe ö
 inoremap OE Ö
 inoremap Oe Ö
 
-" Fundamental ESC remapping!
+" Fundamental ESC remappings!
 inoremap jk <esc>
 inoremap fd <esc>
 
@@ -155,6 +155,9 @@ inoremap ;; <esc>A;
 
 " Double comma adds comma outside of textmass.
 inoremap ,, <esc>Ea, 
+
+" Backspace is also delete (like on a mac)
+inoremap <c-BS> <DEL>
 
 " Control-space spaces out of textmass to the right
 inoremap <c-space> <esc>:call NextWordNoLineChange()<CR>a
