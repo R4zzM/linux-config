@@ -421,6 +421,9 @@ let wiki.path_html       = '~/Dropbox/Public/vimwiki-html/'
 let wiki.nested_syntaxes = {'python': 'python', 'perl': 'perl'}
 let g:vimwiki_list       = [wiki]
 
+" To make snipmate work in vimwiki files...
+let g:vimwiki_table_mappings = 0
+
 " }}}
 
 " Theme {{{
