@@ -98,6 +98,10 @@ set scrolloff=15
 " No autocommenting, atleast for the time being
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" Don't keep options over sessions as it often conflicts with newer versions of 
+" .vimrc
+set sessionoptions-=options
+
 " }}}
 
 " vnoremap {{{
@@ -193,6 +197,9 @@ inoremap }}} }}}<right>
 
 nnoremap <c-space> :call NextWordNoLineChange()<CR>
 nnoremap <c-return> :call PrevWordNoLineChange()<CR>
+
+" Less error prone way to start unix command
+noremap <cr><cr> :!
 
 " Another way to quit
 nnoremap <F12> :wq!<CR>
