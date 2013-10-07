@@ -15,7 +15,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
--- R4zzM's (totally) awesome support lib
+-- R4zzM's (totally) awesome support library
 local rcsupport = require("rcsupport")
 
 -- Enable / disable debug messages when loading this file

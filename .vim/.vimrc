@@ -114,6 +114,9 @@ vnoremap L $
 vnoremap <Leader>em c**<esc>P
 vnoremap <Leader>qo c""<esc>P
 
+" I don't get the point of this command...
+" vunmap s
+
 " Surround visually selected text
 vnoremap s( c()<esc>P
 vnoremap s) c()<esc>P
@@ -143,7 +146,7 @@ inoremap oe ö
 inoremap OE Ö
 inoremap Oe Ö
 
-" Fundamental ESC remapping!
+" Fundamental ESC remappings!
 inoremap jk <esc>
 inoremap fd <esc>
 
@@ -159,6 +162,9 @@ inoremap ;; <esc>A;
 
 " Double comma adds comma outside of textmass.
 inoremap ,, <esc>Ea, 
+
+" Backspace is also delete (like on a mac)
+inoremap <c-BS> <DEL>
 
 " Control-space spaces out of textmass to the right
 inoremap <c-space> <esc>:call NextWordNoLineChange()<CR>a
@@ -239,8 +245,12 @@ onoremap nqo :call NextQuote()<CR>
 onoremap H ^
 onoremap L $
 
-" Clear function body
-" onoremap b /return<CR>
+" Grep for the word under the cursor (should be onoremap)
+" nnoremap <Leader>gr :silent execute "grep! -I -R " . shellescape(expand("<cword>"))
+"                  \ . " ."<CR>:copen<CR>
+
+" New Dawn!
+
 
 " }}}
 
@@ -260,24 +270,14 @@ nnoremap <Leader>qu :q!<CR>
 nnoremap <Leader>tc :tabclose!<CR>
 nnoremap <Leader>bd :bd!<CR>
 
-" Cycle windows
-nnoremap <Leader>w <c-w>w
-
 " Edit .vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 
-" Edit .vim/after/ftplugin/[filetype].vim for the type of bufffer 
-" currently edited
-" let ft       = &ft
-" let abs_path = $HOME . "/.vim/after/ftplugin/" . &ft . ".vim"
-" let cmd  = "normal! :vsplit " . abs_path . "\<CR>"
+" Edit .vim/after/ftplugin/[filetype].vim for the type of buffer 
 nnoremap <Leader>eft :call OpenFtPluginFile(&ft)<CR>
 
 " Source the current file in the current buffer
 nnoremap <Leader>sv :source %<CR>
-
-nnoremap <Leader>sap :vsplit $HOME/.vimrc/after/ftplugin/
-" nnoremap <Leader>sv :source $MYVIMRC<CR>
 
 " Insert [t]ime[s]tamp
 nnoremap <Leader>ts :r !date<CR><up>J
@@ -289,15 +289,11 @@ nnoremap <Leader>em ciw**<esc>P
 nnoremap <Leader>qo ciw""<esc>P
 
 " Line manipulation stuff
-nnoremap <Leader>d ddO<esc>
 nnoremap <Leader>o o<up><esc>
 nnoremap <Leader>O O<down><esc>
 
 " [r]e[i]ndent a file
 nnoremap <Leader>ri mx:normal gg=G<CR>'xzz
-
-" [k]ill current buffer
-" nnoremap <Leader>k :bd!<CR> 
 
 " [a]lign text (Depnds on Align plugin)
 nnoremap <Leader>a :Align=<CR>
@@ -313,9 +309,9 @@ nnoremap <Leader>mk :Make<CR>
 " Ugly Clearcase stuff for systems that has that installed...
 nnoremap <Leader>cco :setlocal autoread<CR>:!ct co -nc %<CR>
 nnoremap <Leader>cci :!ct ci -nc %<CR>
-nnoremap <Leader>cu :!ct unco %<CR>
-nnoremap <Leader>cls :!ct lsco -me -recurse -short<CR>
-nnoremap <Leader>clsa :!ct lsco -me -all -short<CR>
+nnoremap <Leader>ccu :!ct unco %<CR>
+nnoremap <Leader>ccls :!ct lsco -me -recurse -short<CR>
+nnoremap <Leader>cclsa :!ct lsco -me -all -short<CR>
 nnoremap <Leader>ccia :!ct lsco -me -recurse -short \| xargs ct ci -nc<CR>
 
 " Git stuff (Depends on fugitive plugin)
@@ -400,16 +396,18 @@ let g:ctrlp_match_window = 'max:25'
 
 " Check if I have compiled exuberant ctags myself. If I have, I want to use
 " it!
+" I don't want the 'Press ENTER to continue prompt all the time', therefore
+" messages about which ctags that is being used i commented out.
 let custom_ctags = system("which " . $HOME . "/bin/ctags")
 if(v:shell_error ==# 0)
-  echom "Taglist: Using /home/erasmat/bin/ctags"
+  " echom "Taglist: Using /home/erasmat/bin/ctags"
   let Tlist_Ctags_Cmd='/home/erasmat/bin/ctags'
 else
   let ctags_exec = system("which ctags")
   if(v:shell_error ==# 0)
-    echom "Taglist: Using " . ctags_exec
+    " echom "Taglist: Using " . ctags_exec
   else
-    echom "Taglist error: Exuberent ctags not found!"
+    silent echom "Taglist error: Exuberent ctags not found!"
   endif
 endif
 
@@ -429,6 +427,9 @@ let wiki.path            = '~/Dropbox/vimwiki'
 let wiki.path_html       = '~/Dropbox/Public/vimwiki-html/'
 let wiki.nested_syntaxes = {'python': 'python', 'perl': 'perl'}
 let g:vimwiki_list       = [wiki]
+
+" To make snipmate work in vimwiki files...
+let g:vimwiki_table_mappings = 0
 
 " }}}
 
