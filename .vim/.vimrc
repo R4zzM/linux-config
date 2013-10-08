@@ -205,15 +205,15 @@ nnoremap <c-space> :call NextWordNoLineChange()<CR>
 nnoremap <c-return> :call PrevWordNoLineChange()<CR>
 
 " Less error prone way to start unix command
-noremap <cr><cr> :!
+nnoremap <cr><cr> :!
 
-" Another way to quit
-nnoremap <F12> :wq!<CR>
+nnoremap <c-f>w <space><space>w
+nnoremap <c-f>b <space><space>w
 
 " Make scrolling be more smooth. 20 Lines at a time "
-noremap <c-u> <C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
+nnoremap <c-u> <C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
 
-noremap <c-d> <C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
+nnoremap <c-d> <C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down><C-E><down>
 
 " Go to end of line and beginning of line 
 nnoremap L $
@@ -224,6 +224,9 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+" Use for easymotion
+nnoremap <c-f> <NOP>
 
 " }}}
 
@@ -261,7 +264,7 @@ onoremap L $
 let mapleader="\<space>"
 
 " [s]av[e] command
-noremap <Leader>se :w<CR>
+nnoremap <Leader>se :w<CR>
 
 " [qu]it with force command 
 nnoremap <Leader>qu :q!<CR>
@@ -430,6 +433,13 @@ let g:vimwiki_list       = [wiki]
 
 " To make snipmate work in vimwiki files...
 let g:vimwiki_table_mappings = 0
+
+" }}}
+
+" Plugin: Easymotion {{{
+
+" Use c-f for easymotion
+let g:EasyMotion_leader_key = '<C-f>'
 
 " }}}
 
