@@ -1,4 +1,8 @@
 function! s:GrepOperator(type)
+  if !exists("g:grep_root")
+    g:grep_root="."
+  endif
+
   let saved_unnamed_register = @@
 
   if a:type ==# 'v'
@@ -10,7 +14,7 @@ function! s:GrepOperator(type)
   end
 
   " echom shellescape(@@)
-  silent execute "grep! -I -R " . shellescape(@@) . " ."
+  silent execute "grep! -I -R " . shellescape(@@) . " " . g:grep_root
   copen
 
   let @@ = saved_unnamed_register
