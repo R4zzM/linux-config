@@ -1,9 +1,3 @@
-" NEEDS TO BE FIXED SECTION
-" - Remember position after intenting (maybe ok?)
-" - :grep is a really nice cmd. Add the stuff from learnvimthehardway here.
-
-" Shouldn't it be possible to add this one to a vim.vim ftplugin file?
-
 let maplocalleader="\\"
 
 augroup filetype_vim
@@ -157,29 +151,36 @@ inoremap <c-u> <right><esc>viwUea
 inoremap <c-v> ""<esc>i
 inoremap '' ''<esc>i
 
-" Double semi-colons closes the line
-inoremap ;; <esc>A;
+" Close-the-line commands that really should go into a plugin
+inoremap <c-e>; <esc>g_a;
+inoremap <c-e>: <esc>g_a:
+inoremap <c-e>. <esc>g_a.
+inoremap <c-e>, <esc>g_a,
+inoremap <c-e><space> <esc>g_a
 
-" Double comma adds comma outside of textmass.
-inoremap ,, <esc>Ea, 
-
-" Backspace is also delete (like on a mac)
+" Control-Backspace is also delete (like on a mac)
 inoremap <c-BS> <DEL>
 
+" Add movement in insertmode
+inoremap <c-h> <c-o>h
+inoremap <c-j> <c-g>j
+inoremap <c-k> <c-g>k
+inoremap <c-l> <c-o>l
+
 " Control-space spaces out of textmass to the right
-inoremap <c-space> <esc>:call NextWordNoLineChange()<CR>a
+" inoremap <c-space> <esc>:call NextWordNoLineChange()<CR>a
 
 " Control-return spaces out of textmass to the left
-inoremap <c-return> <esc>:call PrevWordNoLineChange()<CR>i
+" inoremap <c-return> <esc>:call PrevWordNoLineChange()<CR>i
 
-" Control-return spaces out of textmass to the left
-inoremap <c-f> <right>
+" Move one character right
+" inoremap <c-f> <right>
 
-" Control-return spaces out of textmass to the left
-inoremap <c-j> <left>
+" Move one character backwards
+" inoremap <c-j> <left>
 
 " Put equal sign in an easier to reach position "
-inoremap <c-e> =
+" inoremap <c-e> =
 
 " Insert block
 inoremap <c-b> {}<left><CR><CR><backspace><up><c-t>
@@ -206,9 +207,6 @@ nnoremap <c-return> :call PrevWordNoLineChange()<CR>
 
 " Less error prone way to start unix command
 nnoremap <cr><cr> :!
-
-nnoremap <c-f>w <space><space>w
-nnoremap <c-f>b <space><space>w
 
 " Make scrolling be more smooth. 20 Lines at a time "
 nnoremap <c-u> <C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
@@ -383,8 +381,9 @@ execute pathogen#helptags()
 
 " Plugin: Syntastic {{{ 
 
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_enable_signs  = 1
+let g:syntastic_auto_loc_list   = 1
+let g:syntastic_enable_signs    = 1
+let g:syntastic_quiet_warnings  = 1
 
 " }}}
 
