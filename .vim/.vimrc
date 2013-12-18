@@ -125,6 +125,10 @@ vnoremap s" c""<esc>P
 " Align
 vnoremap <Leader>at :Align\|<CR>
 
+" Indentation without loosing selection
+vnoremap > >gv 
+vnoremap < <gv 
+
 " }}}
 
 " inoremap {{{
@@ -195,6 +199,7 @@ inoremap ]] []<esc>i
 
 " For Vimwiki purposes to override the above.
 " Maybe {{ should be removed in .vim files now that I think about it...
+
 inoremap {{{ {{{<right>
 inoremap }}} }}}<right>
 
@@ -207,6 +212,9 @@ nnoremap <c-return> :call PrevWordNoLineChange()<CR>
 
 " Less error prone way to start unix command
 nnoremap <cr><cr> :!
+
+" Format paragraph to be shorter than tw
+nnoremap <leader>f gqap
 
 " Make scrolling be more smooth. 20 Lines at a time "
 nnoremap <c-u> <C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up><C-Y><up>
