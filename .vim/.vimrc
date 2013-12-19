@@ -297,13 +297,6 @@ nnoremap <Leader>em ciw**<esc>P
 " Add "quotes"
 nnoremap <Leader>qo ciw""<esc>P
 
-" Line manipulation stuff
-nnoremap <Leader>o o<up><esc>
-nnoremap <Leader>O O<down><esc>
-
-" [r]e[i]ndent a file
-nnoremap <Leader>ri mx:normal gg=G<CR>'xzz
-
 " [a]lign text (Depnds on Align plugin)
 nnoremap <Leader>a :Align=<CR>
 nnoremap <Leader>a :Align=<CR>
@@ -315,7 +308,7 @@ nnoremap <Leader>p :CtrlPMixed<CR>
 " Start a full build (Depends on Dispatch plugin)
 nnoremap <Leader>mk :Make<CR>
 
-" Ugly Clearcase stuff for systems that has that installed...
+" Clearcase stuff for systems that has that installed...
 nnoremap <Leader>cco :setlocal autoread<CR>:!ct co -nc %<CR>
 nnoremap <Leader>cci :!ct ci -nc %<CR>
 nnoremap <Leader>ccu :!ct unco %<CR>
@@ -332,8 +325,11 @@ nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>sl :SessionList<CR>
 nnoremap <Leader>ss :SessionSave<CR>
 
-" Enable the taglist (depends on exuberant ctags and taglist)
+" Show Taglist (depends on exuberant ctags and taglist plugin)
 nnoremap <Leader>tl :TlistToggle<CR>
+
+" Show NERDTree (depends on NERDTree plugin)
+nnoremap <Leader>nt :NERDTreeToggle<CR>
 
 " Fast access to VIM builtin functions
 nnoremap <Leader>api :help function-list<CR>
