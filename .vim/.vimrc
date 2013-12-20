@@ -19,13 +19,13 @@ augroup END
 
 " Editor configuration {{{
 
-" Should be set when this file is found. More of a statement...
+" If this file is read this options is already set. More of a statement...
 set nocompatible
 
-" Use highlightnig of text for different type of files (mostly code).
+" Use highlightnig of text depending on filetype.
 syntax on
 
-" Read custom filetype konfiguration from ~/.vim/ftplugin/
+" Read custom filetype configuration from ~/.vim/ftplugin/
 filetype plugin on
 
 " Show line numbers
@@ -37,7 +37,7 @@ set incsearch
 " Highlight all search matches
 set hlsearch
 
-" Automatically indent files that should be indented
+" Automatically indent files (that should be indented)) when coding.
 set autoindent
 set smartindent
 
@@ -48,20 +48,20 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-" Max 80 chars per line. Vizualize.
-set textwidth=80
-set colorcolumn=81
+" Max 79 chars per line. Vizualize.
+set textwidth=79
+set colorcolumn=80
 
 " Left, right and backspace keys wraps the cursor
 set whichwrap+=<,>,h,l 
 
-" Backspace erases as it should do
+" Backspace erases. Everything else is just strange.
 set backspace=2 
 
 " Ignore interpretation of remapped keys when pasting into buffer
 set mouse=a
 
-" Share clipboard with X
+" Share clipboard with X if available
 set clipboard=unnamedplus
 
 " Show command in status line
@@ -86,15 +86,20 @@ set statusline+=%{fugitive#statusline()}
 set wildmode=full
 set wildmenu 
 
-" Keep cursor (almost) in the middle of the screen
-set scrolloff=15
+" Keep cursor close to the middle of the screen
+set scrolloff=18
 
-" No autocommenting, atleast for the time being
+" No autocommenting. It's just annoying.
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Don't keep options over sessions as it often conflicts with newer versions of 
 " .vimrc
 set sessionoptions-=options
+
+" Don't create .swp or backup files. They just cause trouble when the same file
+" is being edited from different computers.
+set noswapfile
+set nobackup
 
 " }}}
 
@@ -133,6 +138,10 @@ vnoremap < <gv
 
 " inoremap {{{
 
+" Fundamental ESC remappings!
+inoremap jk <esc>
+inoremap fd <esc>
+
 " Swedish Programmer experiment
 inoremap aa å
 inoremap AA Å
@@ -144,50 +153,28 @@ inoremap oe ö
 inoremap OE Ö
 inoremap Oe Ö
 
-" Fundamental ESC remappings!
-inoremap jk <esc>
-inoremap fd <esc>
-
-" [U]PPERCASE word 
-inoremap <c-u> <right><esc>viwUea
-
 " Double quotationmarks => Put cursor inbetween (v = qvote ;)
 inoremap <c-v> ""<esc>i
 inoremap '' ''<esc>i
 
-" Close-the-line commands that really should go into a plugin
+" [e]nd-the-line with specific char (maybe should go into a plugin)
 inoremap <c-e>; <esc>g_a;
 inoremap <c-e>: <esc>g_a:
 inoremap <c-e>. <esc>g_a.
 inoremap <c-e>, <esc>g_a,
 inoremap <c-e><space> <esc>g_a
 
-" Control-Backspace is also delete (like on a mac)
+" Insert block (and automatically closes current line, see above)
+inoremap <c-b> <esc>g_a<space>{}<left><CR><CR><backspace><up><c-t>
+
+" Control-Backspace works like delete
 inoremap <c-BS> <DEL>
 
-" Add movement in insertmode
+" Simple movement in insertmode by holdning control
 inoremap <c-h> <c-o>h
 inoremap <c-j> <c-g>j
 inoremap <c-k> <c-g>k
 inoremap <c-l> <c-o>l
-
-" Control-space spaces out of textmass to the right
-" inoremap <c-space> <esc>:call NextWordNoLineChange()<CR>a
-
-" Control-return spaces out of textmass to the left
-" inoremap <c-return> <esc>:call PrevWordNoLineChange()<CR>i
-
-" Move one character right
-" inoremap <c-f> <right>
-
-" Move one character backwards
-" inoremap <c-j> <left>
-
-" Put equal sign in an easier to reach position "
-" inoremap <c-e> =
-
-" Insert block
-inoremap <c-b> {}<left><CR><CR><backspace><up><c-t>
 
 " Doubletapping *any* parenthesis button generates pair and puts cursor inside
 inoremap (( ()<esc>i
@@ -368,26 +355,19 @@ iabbrev getIsntance getInstance
 
 " Plugin: Pathogen {{{
 
-" Determine if we are in the hub by checking if clearcase exists
-" let ct_exec = system("which ct")
-" if (v:shell_error ==# 0)
-"   echom "Pathogen: Loading plugins from ~/.vim"
-"   execute pathogen#infect()
-" else
-"   echom "Pathogen: Loading plugins from ~/Dropbox/..."
-"   execute pathogen#infect('~/Dropbox/config/vim/bundle/{}')
-" endif
-
+" Load the plugins
 execute pathogen#infect()
+
+" Load the documentation for the plugins
 execute pathogen#helptags()
 
 "}}}
 
 " Plugin: Syntastic {{{ 
 
-let g:syntastic_auto_loc_list   = 1
-let g:syntastic_enable_signs    = 1
-let g:syntastic_quiet_warnings  = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_quiet_warnings = 1
 
 " }}}
 
@@ -402,8 +382,6 @@ let g:ctrlp_match_window = 'max:25'
 
 " Check if I have compiled exuberant ctags myself. If I have, I want to use
 " it!
-" I don't want the 'Press ENTER to continue prompt all the time', therefore
-" messages about which ctags that is being used i commented out.
 let custom_ctags = system("which " . $HOME . "/bin/ctags")
 if(v:shell_error ==# 0)
   " echom "Taglist: Using /home/erasmat/bin/ctags"
@@ -448,7 +426,7 @@ let g:EasyMotion_leader_key = '<C-f>'
 
 " Theme {{{
 
-" Set the theme
+" Set the theme. I think I got this one from vivify.
 colorscheme Dim2
 
 " }}}
