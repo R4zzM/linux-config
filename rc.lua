@@ -18,6 +18,9 @@ local menubar = require("menubar")
 -- Vicious library for widgets (not a standard awesome lib))
 local vicious = require("vicious")
 
+-- Eminent library to handle dynamic tags
+require("eminent")
+
 -- R4zzMs totally awesome support library
 local rcsupport = require("rcsupport")
 
@@ -118,16 +121,16 @@ tags = {}
 if rcsupport.is_elx() then 
   for s = 1, screen.count() do
       -- Each screen has its own tag table.
-      tags[s] = awful.tag({ "Browser", "E-mail", 
-                            "Localhost", "ctrl & dmz", 
-                            "engine", "vnc", "nmxwd", 
-                            "nmx", "wiki+spotify" }, s, layouts[1])
+      tags[s] = awful.tag({ "Default", "Browser", "E-mail", 
+                            "Ctrl & Dmz", 
+                            "Engine", "VNC", "nmxwd", 
+                            "NMX Devel", "Wiki+Spotify" }, s, layouts[1])
   end
 else 
   for s = 1, screen.count() do
       -- Each screen has its own tag table.
-      tags[s] = awful.tag({ "Browser", "E-mail", 
-                            3, 4, 5, 6, 7, 8, "Wiki" }, s, layouts[1])
+      tags[s] = awful.tag({ "Default", "Browser", "E-mail", 
+                            4, 5, 6, 7, 8, "Wiki" }, s, layouts[1])
   end
 end 
 -- }}}
@@ -149,8 +152,9 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+-- mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+                                     -- menu = mymainmenu })
+
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
@@ -168,7 +172,7 @@ separator = wibox.widget.textbox()
 separator:set_text(" - ")
 
 -- Create a textclock widget
-mytextclock = awful.widget.textclock()
+clock = awful.widget.textclock()
 
 -- Create a sound widget (TODO: create a function to handle mute state)
 volumewidget = wibox.widget.textbox()
@@ -183,6 +187,8 @@ batwidget:set_background_color("#494B4F")
 batwidget:set_border_color(nil)
 batwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 }, 
     stops = { { 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" }}})
+
+-- {{{ Widgets
 
 bat2 = wibox.widget.textbox()
 vicious.register(bat2, vicious.widgets.bat, "B: $2%", 61, "BAT0")
@@ -258,7 +264,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(mylauncher)
+    -- left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
 
@@ -272,7 +278,7 @@ for s = 1, screen.count() do
     right_layout:add(separator)
     right_layout:add(volumewidget)
     right_layout:add(separator)
-    right_layout:add(mytextclock)
+    right_layout:add(clock)
     right_layout:add(spacing)
     right_layout:add(mylayoutbox[s])
 
@@ -446,9 +452,9 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons } },
     { rule = { class = "Firefox" },
-      properties = { tag = tags[1][1] } },
-    { rule = { class = "Thunderbird" },
       properties = { tag = tags[1][2] } },
+    { rule = { class = "Thunderbird" },
+      properties = { tag = tags[1][3] } },
     { rule = { class = "Spotify" },
       properties = { tag = tags[1][9] } },
 }
