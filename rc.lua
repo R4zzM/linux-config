@@ -15,12 +15,15 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
--- R4zzM's (totally) awesome support library
+-- Vicious library for widgets (not a standard awesome lib))
+local vicious = require("vicious")
+
+-- R4zzMs totally awesome support library
 local rcsupport = require("rcsupport")
 
 -- Enable / disable debug messages when loading this file
 rcsupport.enable_dbg()
---rcsupport.disable_dbg()
+-- rcsupport.disable_dbg()
 
 rcsupport.dbg("hostname = " .. rcsupport.get_hostname())
 if rcsupport.is_elx() then
@@ -118,7 +121,7 @@ if rcsupport.is_elx() then
       tags[s] = awful.tag({ "Browser", "E-mail", 
                             "Localhost", "ctrl & dmz", 
                             "engine", "vnc", "nmxwd", 
-                            "nmx", "Wiki" }, s, layouts[1])
+                            "nmx", "wiki+spotify" }, s, layouts[1])
   end
 else 
   for s = 1, screen.count() do
@@ -156,13 +159,35 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 rcsupport.dbg("Creating wibox...")
 
--- Create a space
-myspacing = wibox.widget.textbox()
-myspacing:set_text("  ")
+-- Create a space widget
+spacing = wibox.widget.textbox()
+spacing:set_text("  ")
+
+-- Create a separator widget 
+separator = wibox.widget.textbox()
+separator:set_text(" - ")
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
+-- Create a sound widget (TODO: create a function to handle mute state)
+volumewidget = wibox.widget.textbox()
+vicious.register(volumewidget, vicious.widgets.volume, "♫: $1%", 2, "Master")
+
+-- Battery widget
+batwidget = awful.widget.progressbar()
+batwidget:set_width(8)
+batwidget:set_height(10)
+batwidget:set_vertical(true)
+batwidget:set_background_color("#494B4F")
+batwidget:set_border_color(nil)
+batwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 }, 
+    stops = { { 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" }}})
+
+bat2 = wibox.widget.textbox()
+vicious.register(bat2, vicious.widgets.bat, "B: $2%", 61, "BAT0")
+
+vicious.register(batwidget, vicious.widgets.bat, "$2", 61, "BAT0")
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
@@ -240,9 +265,15 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(myspacing)
+    right_layout:add(spacing)
+    -- right_layout:add(batwidget)
+    -- right_layout:add(separator)
+    right_layout:add(bat2)
+    right_layout:add(separator)
+    right_layout:add(volumewidget)
+    right_layout:add(separator)
     right_layout:add(mytextclock)
-    right_layout:add(myspacing)
+    right_layout:add(spacing)
     right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
@@ -414,15 +445,12 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
+    { rule = { class = "Firefox" },
+      properties = { tag = tags[1][1] } },
+    { rule = { class = "Thunderbird" },
+      properties = { tag = tags[1][2] } },
+    { rule = { class = "Spotify" },
+      properties = { tag = tags[1][9] } },
 }
 -- }}}
 
