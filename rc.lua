@@ -121,7 +121,7 @@ tags = {}
 if rcsupport.is_elx() then 
   for s = 1, screen.count() do
       -- Each screen has its own tag table.
-      tags[s] = awful.tag({ "Default", "Browser", "E-mail", 
+      tags[s] = awful.tag({ rcsupport.get_hostname(), "Internet", "E-mail", 
                             "Ctrl & Dmz", 
                             "Engine", "VNC", "nmxwd", 
                             "NMX Devel", "Wiki+Spotify" }, s, layouts[1])
@@ -129,7 +129,7 @@ if rcsupport.is_elx() then
 else 
   for s = 1, screen.count() do
       -- Each screen has its own tag table.
-      tags[s] = awful.tag({ "Default", "Browser", "E-mail", 
+      tags[s] = awful.tag({ rcsupport.get_hostname(), "Internet", "E-mail", 
                             4, 5, 6, 7, 8, "Wiki" }, s, layouts[1])
   end
 end 
