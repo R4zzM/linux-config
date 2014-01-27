@@ -21,7 +21,7 @@ local vicious = require("vicious")
 -- Eminent library to handle dynamic tags
 require("eminent")
 
--- R4zzMs totally awesome support library
+-- R4zzMs awesome support library
 local rcsupport = require("rcsupport")
 
 -- Enable / disable debug messages when loading this file
@@ -121,16 +121,16 @@ tags = {}
 if rcsupport.is_elx() then 
   for s = 1, screen.count() do
       -- Each screen has its own tag table.
-      tags[s] = awful.tag({ rcsupport.get_hostname(), "Internet", "E-mail", 
+      tags[s] = awful.tag({ rcsupport.get_hostname(), "Internet", "E-mejl", 
                             "Ctrl & Dmz", 
                             "Engine", "VNC", "nmxwd", 
-                            "NMX Devel", "Wiki+Spotify" }, s, layouts[1])
+                            "NMX Devel", "Musik" }, s, layouts[1])
   end
 else 
   for s = 1, screen.count() do
       -- Each screen has its own tag table.
-      tags[s] = awful.tag({ rcsupport.get_hostname(), "Internet", "E-mail", 
-                            4, 5, 6, 7, 8, "Wiki" }, s, layouts[1])
+      tags[s] = awful.tag({ rcsupport.get_hostname(), "Internet", "E-mejl", 
+                            "Plånböcker", 5, 6, 7, 8, "Musik" }, s, layouts[1])
   end
 end 
 -- }}}
@@ -455,6 +455,10 @@ awful.rules.rules = {
       properties = { tag = tags[1][2] } },
     { rule = { class = "Thunderbird" },
       properties = { tag = tags[1][3] } },
+    { rule = { class = "dogecoin-qt" },
+      properties = { tag = tags[1][4] } },
+    { rule = { class = "namecoin-qt" },
+      properties = { tag = tags[1][4] } },
     { rule = { class = "Spotify" },
       properties = { tag = tags[1][9] } },
 }
