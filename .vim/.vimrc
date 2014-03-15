@@ -140,7 +140,7 @@ vnoremap < <gv
 
 " Fundamental ESC remappings!
 inoremap jk <esc>
-inoremap fd <esc>
+" inoremap fd <esc>
 
 " Swedish Programmer experiment
 inoremap aa å
@@ -157,18 +157,8 @@ inoremap Oe Ö
 inoremap <c-v> ""<esc>i
 inoremap '' ''<esc>i
 
-" [e]nd-the-line with specific char (maybe should go into a plugin)
-inoremap <c-e>; <esc>g_a;
-inoremap <c-e>: <esc>g_a:
-inoremap <c-e>. <esc>g_a.
-inoremap <c-e>, <esc>g_a,
-inoremap <c-e><space> <esc>g_a
-
 " Insert block (and automatically closes current line, see above)
 inoremap <c-b> <esc>g_a<space>{}<left><CR><CR><backspace><up><c-t>
-
-" Control-Backspace works like delete
-inoremap <c-BS> <DEL>
 
 " Simple movement in insertmode by holdning control
 inoremap <c-h> <c-o>h
@@ -193,12 +183,6 @@ inoremap }}} }}}<right>
 " }}}
 
 " nnoremap {{{
-
-nnoremap <c-space> :call NextWordNoLineChange()<CR>
-nnoremap <c-return> :call PrevWordNoLineChange()<CR>
-
-" Less error prone way to start unix command
-nnoremap <cr><cr> :!
 
 " Format paragraph to be shorter than tw
 nnoremap <leader>f gqap
@@ -240,10 +224,6 @@ onoremap nqo :call NextQuote()<CR>
 " End / Beginning of line
 onoremap H ^
 onoremap L $
-
-" Grep for the word under the cursor (should be onoremap)
-" nnoremap <Leader>gr :silent execute "grep! -I -R " . shellescape(expand("<cword>"))
-"                  \ . " ."<CR>:copen<CR>
 
 " New Dawn!
 
@@ -324,14 +304,6 @@ nnoremap <Leader>api :help function-list<CR>
 " }}}
 
 " Abberivations {{{
-
-" General
-iabbrev @@ rasmus.m.mattsson@gmail.com
-iabbrev zzm http://zzm.se 
-
-" Programming
-inoreabbrev ret return
-inoreabbrev exec execute
 
 " Vim
 inoreabbrev iab inoreabbrev
