@@ -1,8 +1,0 @@
-# Don't version control pathogen as it is already in github.
-.vim/autoload/pathogen.vim
-
-# Skip .netrwhist file
-.vim/.netrwhist
-
-# Any swapfiles
-*.swp
