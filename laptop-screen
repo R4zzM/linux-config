@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+xrandr -s 1600x900
+echo "awesome.restart()" | awesome-client
