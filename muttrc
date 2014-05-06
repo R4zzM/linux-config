@@ -2,7 +2,7 @@ set my_name="Rasmus Mattsson"
 
 # IMAP settings
 set imap_user=rasmus.m.mattsson@gmail.com
-set imap_pass=najspuzzler1\"3
+#set imap_pass=najspuzzler1\"3
 set folder=imaps://rasmus.m.mattsson@imap.gmail.com/
 set spoolfile=+INBOX
 set imap_check_subscribed
@@ -14,7 +14,7 @@ unset record
 set realname="Rasmus Mattsson"
 set from=rasmus.m.mattsson@gmail.com
 set use_from=yes
-set smtp_url=smtps://rasmus.m.mattsson@gmail.com:najspuzzler1\"3@smtp.gmail.com
+set smtp_url=smtps://rasmus.m.mattsson@smtp.gmail.com
 set ssl_force_tls=yes
 unset ssl_starttls
 
