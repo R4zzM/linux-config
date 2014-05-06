@@ -37,6 +37,10 @@ URxvt.scrollWithBuffer: true
 URxvt.scrollTtyKeypress: true
 URxvt.visualBell: false
 
+! Disable the picture insert mode
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
 ! Urxvt-perls
 URxvt.perl-ext-common: keyboard-select,font-size
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
@@ -44,3 +48,5 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 ! URxvt.keysym.M-u: perl:url-select:select_nextRxvt.keysym.M-s: perl:keyboard-select:search */
 URxvt.keysym.C-Up: perl:font-size:increase
 URxvt.keysym.C-Down: perl:font-size:decrease
+URxvt.keysym.C-S-Up: perl:font-size:incglobal
+URxvt.keysym.C-S-Down: perl:font-size:decglobal
