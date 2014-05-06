@@ -29,10 +29,18 @@ URxvt.color15: #EEEEEC
 URxvt.transparent: true
 URxvt.shading: 10
 URxvt.fading: 40
-URxvt.font: xft:Mono:pixelsize=12.5
+URxvt.font: xft:Mono:pixelsize=20
 
 URxvt.scrollBar: false
 URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
 URxvt.scrollTtyKeypress: true
 URxvt.visualBell: false
+
+! Urxvt-perls
+URxvt.perl-ext-common: keyboard-select,font-size
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+! URxvt.perl-ext-common: ...,url-select */
+! URxvt.keysym.M-u: perl:url-select:select_nextRxvt.keysym.M-s: perl:keyboard-select:search */
+URxvt.keysym.C-Up: perl:font-size:increase
+URxvt.keysym.C-Down: perl:font-size:decrease
