@@ -8,7 +8,8 @@
 ! URxvt.font: 9x15
 
 URxvt.foreground: #C8C8C8
-URxvt.background: #323232
+! URxvt.background: #323232
+URxvt.background: #111111
 URxvt.color0: #2E3436
 URxvt.color1: #CC0000
 URxvt.color2: #4E9A06
@@ -29,14 +30,14 @@ URxvt.color15: #EEEEEC
 URxvt.transparent: true
 URxvt.shading: 10
 URxvt.fading: 40
-URxvt.font: xft:Mono:pixelsize=20
+URxvt.font: xft:Mono:pixelsize=19
 
 URxvt.scrollBar: false
 URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
 URxvt.scrollTtyKeypress: true
 URxvt.visualBell: false
-
+  
 ! Disable the picture insert mode
 URxvt.iso14755: false
 URxvt.iso14755_52: false

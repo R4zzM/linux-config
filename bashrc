@@ -5,11 +5,18 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Give ls colors
 alias ls='ls --color=auto'
+
+# Make feh handle tiling VM as good as it can
+alias feh='feh --scale-down --auto-zoom'
+
 PS1='[\u@\h \W]\$ '
 
-# A few exports
-export PATH=$PATH:~/bin
+# Augment the path
+export PATH=~/bin:$PATH
+export PATH=~/opt/pebble-dev/PebbleSDK-3.2/bin:$PATH
+
 export EDITOR=vim
 
 # Turn off the horrible bell!
