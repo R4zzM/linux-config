@@ -5,8 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Give ls colors
 alias ls='ls --color=auto'
+alias ll='ls --color=auto -la'
+alias pp='ps -ef'
 
 # Make feh handle tiling VM as good as it can
 alias feh='feh --scale-down --auto-zoom'

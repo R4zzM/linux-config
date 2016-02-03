@@ -5,3 +5,5 @@
 	default = simple
 [credentials]
 	user = R4zzM
+[alias]
+	tree = log --oneline --decorate --all --graph
