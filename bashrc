@@ -33,6 +33,11 @@ else
   PS1='[\u@\h \W]\$ '
 fi
 
+# Set proper dircolors when using ls
+if [[ -f ~/.dir_colors ]]; then 
+  eval `dircolors ~/.dir_colors`
+fi
+
 # Set the environment
 export PATH=~/opt/pebble-dev/PebbleSDK-3.2/bin:~/bin:$PATH
 export EDITOR=vim
