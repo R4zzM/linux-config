@@ -15,6 +15,7 @@ alias feh='feh --scale-down --auto-zoom'
 
 # Key bindings
 bind -x '"l":"ls -la"'
+bind -x '"p":"pwd"'
 bind -x '"s":"git status"'
 bind -x '"t":"git tree"'
 
