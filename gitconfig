@@ -3,7 +3,5 @@
 	email = rasmus.m.mattsson@gmail.com
 [push]
 	default = simple
-[credentials]
-	user = R4zzM
 [alias]
 	tree = log --oneline --decorate --all --graph

@@ -1,0 +1,3 @@
+bind -x '"s":"git status"';
+bind -x '"t":"git tree"';
+bind -x '"d":"git diff"';

@@ -1,0 +1,73 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+###########
+# History #
+###########
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+shopt -s histappend
+shopt -s checkwinsize
+
+#################
+# Color support #
+#################
+if [ -x /usr/bin/dircolors ]; then
+    [[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+###############
+# Environment #
+###############
+export EDITOR=vim
+export PAGER=less
+
+############
+# Fix Less #
+############
+default=$(tput sgr0)
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+purple=$(tput setaf 5)
+orange=$(tput setaf 9)
+
+export LESS_TERMCAP_mb=$red
+export LESS_TERMCAP_md=$orange
+export LESS_TERMCAP_me=$default
+export LESS_TERMCAP_se=$default
+export LESS_TERMCAP_so=$purple
+export LESS_TERMCAP_ue=$default
+export LESS_TERMCAP_us=$green
+
+############
+# Keybinds #
+############
+[[ -r ~/.bash_binds ]] && eval $(cat ~/.bash_binds)
+
+##########
+# Prompt #
+##########
+[[ -r ~/.git-prompt.sh  ]] && source ~/.git-prompt.sh
+
+# Only show login and host if I'm not myself
+[[ $(whoami) != rasmus ]] && USER_AND_HOST="$(whoami)@$(hostname) "
+
+PS1='[${USER_AND_HOST}\w$(__git_ps1)]: '
+
+################################
+# Local stuff not covered here #
+################################
+[[ -r ~/.bash_extra ]] && source ~/.bash_extra
+
+# Start X
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
